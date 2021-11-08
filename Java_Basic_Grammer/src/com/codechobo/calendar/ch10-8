@@ -1,0 +1,21 @@
+Date와 Calendar 간의 변환
+
+Date 의 메서드는 대부분 deprecated(사용하지않을 것을 권장)
+ 되었지만 여전히 사용 
+
+ 자바는 하위호환성을 신경쓰면서 새로운 기능이 나올거면 앞에것을 신경써서
+ 발전속도가 느리지만 안정성이 높다 
+ 이전 jdk 버전이 다음버전에도 돌아가게 배려를 많이 해준다. 
+ 
+ 1.
+ Calendar 를 Date로 변환 하려면 ?
+ 
+ Calendar cal = Calendar.getInstance();
+ Date d = new Date(cal.getTimeInMillis()); Date(long date)
+ 
+ 2. Date를 Calendar로 변환
+ 
+ Date d = new Date();
+
+ Calendar cal = Calendar.getInstacne();
+ cal.setTime(d) 

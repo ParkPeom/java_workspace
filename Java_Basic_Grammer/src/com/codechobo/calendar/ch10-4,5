@@ -1,0 +1,41 @@
+ 
+Calendar 클래스 - 예제2, 3
+set()으로 날짜와 시간지정하기
+
+void set(int field, int value)  년 월 일 
+void set(int field, int value , int value
+int value , int value ,int value) 년 월 일 시 분 초 
+
+- 날짜 지정하는 방법. 월(MONTH)이 0부터 시작한다는 점에 주의
+Why? 배열이 0부터 시작 배열 { "JAN","FEB"..}
+
+Calendar date1 = Calendar.getInstance();
+
+- 년월일 한번에 설정
+date1.set(2021,7,15); 2021년 8월15일(7월 아님)
+
+- 년월일 따로 설정 
+date1.set(Calendar.YEAR, 2021);
+date1.set(Calendar.MONTH, 7);
+date1.set(Calendar.DATE, 15);
+
+- 시간 지정하는 방법
+Calendar time1 = Calendar.getInstance();
+
+time1을 10시 20분 30초로 설정 한다.
+time1.set(Calendar.HOUR_OF_DAY, 10);
+time1.set(Calendar.MINUTE, 20)
+time1.set(Calendar.SECOND, 30)
+
+clear()는 Calendar객체의 모든 필드를 초기화
+
+Calendar dt = Calendar.getInstance(); 현재시간으로 세팅된다.
+
+dt.clear(); 1970년 1월1일로 초기화 
+
+clear(int field)는 Calendar객체의 특정 필드를 초기화
+
+dt.clear(Calendar.SECOND); 초를 초기화
+dt.clear(Calendar.MINUTE); 분을 초기화
+dt.clear(Calednar.HOUR_OF_DAY); 시간을 초기화
+dt.clear(Calendar.HOUR); 초를 초기화 

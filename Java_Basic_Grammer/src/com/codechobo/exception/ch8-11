@@ -1,0 +1,32 @@
+
+메서드에 예외 선언하기
+- 예외를 처리하는 방법 : try-catch문 , 예외 선언하기(예외 떠넘기기)
+자기를 호출한 사람한테 예외를 떠넘김
+ 
+메서드가 호출시 발생가능한 예외를 호출하는 쪽에 알리는 것
+
+예외를 발생시키는 키워드 throw와 예외를 메서드에 선언할떄는 throws를 잘 구별하자
+void method() throws Exception1,Exception2, ... ExceptionN {
+	// 메서드의 내용 메서드에 예외 선언
+}
+// method() 에서 Exception과 그 자손 예외 발생 가능
+void method() throws Exception { 모든 예외의 최고 조상 
+	// 메서드의 내용 
+} 
+
+오버라이딩 조건 1. 선언문이 일치 2. 접근제어자 좁으면안됨 3. 조상보다 많은예외 선언 x 
+Java API 문서 - wait 메서드 
+	public final void wait() {
+		throws InterruptedException // 체크드 예외 
+	}
+	
+
+
+
+
+
+
+
+
+
+

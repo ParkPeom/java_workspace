@@ -1,0 +1,20 @@
+
+익명 클래스(anonymous class)
+
+이름이 없는 일회용 클래스 
+- 이름이 없는 일회용 클래스 . 정의와 생성을 동시에 한다.
+
+class MyClass extends Object
+{
+
+}
+MyClass mc = new MyClass()  에서 이름이 없다 
+
+new Object() {  }  
+
+객체 만들어야 하니까 new쓰고  { 내용이 들어감 }  
+
+이름은  조상이름 쓰던가 구현인터페이스이름을 쓰던가 
+
+
+

@@ -1,0 +1,23 @@
+
+get 필드 읽기
+set 필드 변경
+clear 필드 초기화
+
+add() 특정 필드의 값을 증가 또는 감소(다른 필드에 영향O)
+roll() 
+
+Calendar date = Calendar.getInstance();
+date.clear(); 
+date.set(2020, 7 ,31); 2020년 8월31일로 설정
+
+data.add(Calendar.DATE, +1); 날짜(DATE)에 1을 더한다.
+date.add(Calendar.MONTH, -8); 월(MONTH)에서 8을 뺀다
+
+
+roll()은 특정필드의 값을 증가 또는 감소(다른 필드에 영향X)
+
+date.set(2020, 7, 31) 2020년 8월31일로 설정한다.
+
+// add()와 달리 roll()은 다른 필드에 영향을 미치지 않는다.
+date.roll(Calendar.DATE, 1); 날짜(DATE)에 1을 더한다
+date.roll(Calendar.MONTH, -8); 월(MONTH)에서 8을 뺀다.

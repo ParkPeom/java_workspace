@@ -1,0 +1,30 @@
+
+런타임 에러 (실행중 에러) - Error , Exception 
+
+예외처리 try - catch문
+
+try {  // 괄호 생략 불가 
+	// 예외가 발생할 가능성이 있는 문장들을 넣는다.
+} catch(Exception e1) { // 돈이 부족 
+  // Exception1 이 발생했을 경우 , 이를 극복 하기 위한 문장들을 적는다. 
+}catch(Exception e1) {  // 물이 부족 
+  // Exception1 이 발생했을 경우 , 이를 극복 하기 위한 문장들을 적는다. 
+}catch(Exception e1) {  // 가게문을 닫았을때 
+  // Exception1 이 발생했을 경우 , 이를 극복 하기 위한 문장들을 적는다. 
+}catch(Exception e1) {
+  // Exception1 이 발생했을 경우 , 이를 극복 하기 위한 문장들을 적는다. 
+}catch(Exception e1) {
+  // Exception1 이 발생했을 경우 , 이를 극복 하기 위한 문장들을 적는다. 
+}
+
+
+
+
+
+
+
+
+
+
+
+

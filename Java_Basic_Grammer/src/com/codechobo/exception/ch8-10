@@ -1,0 +1,24 @@
+
+checked 예외 : 컴파일러가 예외처리 여부를 체크(예외처리 필수)
+	ㄴ Exception 과 자손
+unchecked 예외 : 컴파일러가 예외처리 여부를 체크 안함(예외 처리 선택)
+	ㄴ RuntimeException 과 자손
+	
+	throw new Exception(); 체크드 예외 ( 예외처리 필수)
+	throw new RuntimeException(); 언체크드 예외 . 예외처리 선택 
+	
+	오류 종류 1. 컴파일 에러 2. 런타임 에러 3. 논리적 에러 
+	
+	런타임 에러 : Error 심각 
+	 Exception 덜심각 - Exception 과 자손 : 체크드예외 예외처리 필수 컴파일러가 체크
+											RuntimeException 과 자손 :언체크 예외 예외처리 선택 
+
+
+
+
+
+
+
+
+
+

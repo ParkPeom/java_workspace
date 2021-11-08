@@ -1,0 +1,23 @@
+
+내부 클래스의 종류와 유효범위(scope)변수와 동일
+
+class Outer {
+	int iv = 0; // 1 
+	static int cv = 0; // 2
+	
+	void myMethod() {
+		int lv = 0; // 3
+	}
+}
+
+class Outer {
+	class InstanceInner {} 1
+	
+	static class StaticInner {} 2
+	
+	void myMethod() {
+		class LocalInner {} 	
+	}
+}	
+
+익명클래스는 - GUI 이벤트 처리 에서 많이 쓰인다. 

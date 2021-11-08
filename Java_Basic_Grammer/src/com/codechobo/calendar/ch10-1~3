@@ -1,0 +1,32 @@
+
+Calendar 클래스
+추상클래스 이므로 객체 생성 불가
+getInstance() Calendar class 를 구현한 인스턴스를 반환
+Calendar cal = Calendar.getInstance(); Calendar 객체생성 현재 날짜 시간 세팅
+
+get() 날짜와 시간 필드 가져옴 - int get(int field)
+
+int thisYear = cal.get(Calendar.YEAR) 올해가 몇년인지 
+int lastDayOfMonth = cal.getActualMaximum(Calendar.DATE) 이 달 마지막 날
+
+
+필드명 설명 - 날짜 
+YEAR 년
+MONTH 월 (0부터 시작)
+WEEK_OF_YEAR 1월1일 ~ 지금 까지
+WEEK_OF_MONTH 그 달의 몇 번째 주
+DATE 일
+DAY_OF_MONTH 그 달의 몇 번째 일
+DAY_OF_YEAR 그 해의 몇 번째 일
+DAY_OF_WEEK set으로 지정한 요일 , 현재 요일 
+DAY_OF_WEEK_IN_MONTH 그 달의 몇 번째 요일
+
+필드명 설명 - 시간 
+HOUR 시간(0~11)
+HOUR_OF_DAY 시간(0~23)
+MINUTE 분
+SECOND 초
+MILLISECOND 천분의 일초
+ZONE_OFFSET GMT 기준 시차(천분의 일초 단위)
+AM_PM 오전 / 오후 
+
