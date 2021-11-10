@@ -14,4 +14,41 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/com/codechobo/oop/this메모리구조</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/eclipse-git/ITwill/src/OOP_10_26/this%EB%A9%94%EB%AA%A8%EB%A6%AC%EA%B5%AC%EC%A1%B0</locationURI>
+		</link>
+		<link>
+			<name>src/com/codechobo/overload/Car.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/eclipse-git/ITwill/src/OOP_10_25/Car.java</locationURI>
+		</link>
+		<link>
+			<name>src/com/codechobo/overload/CarApp.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/eclipse-git/ITwill/src/OOP_10_25/CarApp.java</locationURI>
+		</link>
+		<link>
+			<name>src/com/codechobo/overload/Method.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/eclipse-git/ITwill/src/OOP_10_25/Method.java</locationURI>
+		</link>
+		<link>
+			<name>src/com/codechobo/overload/Overload.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/eclipse-git/ITwill/src/OOP_10_25/Overload.java</locationURI>
+		</link>
+		<link>
+			<name>src/com/codechobo/overload/OverloadApp.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/eclipse-git/ITwill/src/OOP_10_25/OverloadApp.java</locationURI>
+		</link>
+		<link>
+			<name>src/com/codechobo/overload/레코드는자동으로GetterSetter이있따고.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/eclipse-git/ITwill/src/OOP_10_25/%EB%A0%88%EC%BD%94%EB%93%9C%EB%8A%94%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9CGetterSetter%EC%9D%B4%EC%9E%88%EB%94%B0%EA%B3%A0.java</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
