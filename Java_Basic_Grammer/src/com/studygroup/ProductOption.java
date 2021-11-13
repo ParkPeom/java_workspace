@@ -17,7 +17,6 @@ public class ProductOption {
 		}
 	}
 	public void 수정(ArrayList<ProductVO> arr) {
-		ProductUpdate p = new ProductUpdate();
 		System.out.print("수정하실 브랜드를 입력해주세요 > ");
 		String brand = sc.nextLine();
 		
@@ -46,8 +45,7 @@ public class ProductOption {
 				}
 			}
 		}
-	}
-	
+	}	
 	public void 항목추가(ArrayList<ProductVO> arr) {
 			System.out.print("추가하실 브랜드 이름 > ");
 			String brand = sc.nextLine();

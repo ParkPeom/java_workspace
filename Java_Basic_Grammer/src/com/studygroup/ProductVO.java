@@ -25,7 +25,7 @@ public class ProductVO {
 	}
 
 	public void setBrandName(String brandName) {
-		brandName = brandName;
+		this.brandName = brandName;
 	}
 
 	public int getPrice() {
