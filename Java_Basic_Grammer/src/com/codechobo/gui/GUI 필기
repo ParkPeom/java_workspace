@@ -1,0 +1,84 @@
+
+java.awt  - 버튼 Button , 창 , 체크박스
+
+awt를 상속 받는 swing  javax.swing 
+
+javax.swing 에는 JButton 
+
+JFrame = 창 - 제목 , 라인 
+JPanel(패널) = 버튼 , 체크박스 , 텍스트필드
+
+버튼 , 체크박스 , 텍스트필드 등을 다른걸 담을수없는것을 명칭을 컴포넌트 라고 한다.
+ 컴포넌트들은 클래스에 담을수 있다. 이것을 컨테이너 라고 한다.
+ JFrame = 컨테이너 
+ JSpanelPane 패널에  JTooBar 컴포넌트를 담을수 있다.
+ JDialog = 윈도우에서 뜬상태에서 메뉴 
+ 
+ JFrame(String title) = 창 제목 
+ JFrame(String title, GraphicsConfiguration gc) = (창제목 , 아이콘)
+ 
+ 
+1. 상속받아서 쓰는 경우 
+2. 객체를 만들어서 쓰는 경우 - 
+
+
+버튼 컴포넌트는  컨테이너 JFrame 에 담을수있다. 
+
+// 창크기 정하기
+pack()  : 컨테이너의 내용크기로 자동설정 
+setSize(500,500); : 폭 500 높이 500 단위 
+setBounds(200,300,400,300); // x , y , w , h
+						    // 왼쪽 끝에서 오른쪽까지 x
+							// 위에서 아래 y
+							// w 폭 400 , h 높이 300 
+							
+							
+setDefaultCapable(boolean defaultCapable) : 프로그램 종료시 자원을 지워줌
+                          ▲  DISPOSE_ON_CLOSE : 창을 닫으면 자원을 해제함
+         DO_NOTHING_ON_CLOSE : 창을 못닫게 함  
+   
+   버튼이 왜 꽉차게 보이나 ?       
+    GridLayout      
+         계산기 6행 4열 버튼 크기들이 고루게 배분하는게 GridLayout
+         행렬의 수는 내가 정할수있다.
+    BorderLayout 
+    	프레임이 기본으로 세팅되어있음 
+    	컨테이너에 
+   
+   JPanel 컨테이너에  컴포넌트를 담을수있다.  	
+    	FlowLayout 버튼이 ㅁㅁㅁ 컴포넌트들이 줄서서 들어감
+    					ㅁㅁㅁ 
+    					ㅁㅁㅁ 
+    	단점 사이즈 잡기가 힘들다
+    	프레임에 센터를 만들어서 패널을 담아서 버튼을 담을것 			
+    	
+  GridLayout(int rows, int cols, int hgap, int vgap)  	    
+        		2			2		위아래공백	  왼오른공백
+  
+  이벤트 종류
+  addActionListener(ActionListener l)
+  addChangeListener
+  
+ 자바가상머신한테 버튼이 있는데 이벤트 처리할거를 알려줘야 한다
+ -> 이벤트 등록 
+ 
+  Action 이벤트를 하면 ActionListener인터페이스가 존재한다.
+  
+액션리스너 : 액션 이벤트를 수신하기 위한 리스너 인터페이스.
+ 
+ ActionListener인터페이스의 메서드를 오버라이드 해서 구현해주면 된다.
+ 
+ void
+actionPerformed(ActionEvent e) : 작업이 발생할 때 호출됩니다.
+
+https 통신규약
+auto  폴더 파일명 변수의 데이터 
+
+
+ 
+  
+  
+  
+        
+         
+         
