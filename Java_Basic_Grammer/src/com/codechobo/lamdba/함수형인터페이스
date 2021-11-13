@@ -1,0 +1,23 @@
+함수형 인터페이스 = 단 하나의 추상 메서드만 선언된 인터페이스
+@ FunctionImterface
+
+interface MyFunction {
+	public abstract int max(int a,int b);
+}
+
+MyFunction f = new MyFunction() { // 익명클래스 클래스의 선언 객체 생성 동시에 함
+		public int max(int a, int b) { 
+			return a > b ? a : b;
+		}
+	}
+	new Object 을 썻는데 이젠 함수형 인터페이스를 쓰면 된다
+	obj.max // 에러 obj 에는 max가 없으므로 
+	int value = f.max(3,5); // MyFunction 에 max() 가 있다.
+	
+	함수형 인터페이스 타입의 참조변수로 람다식을 참조할 수 있다
+	(단 함수형 인터페이스의 메서드와 람디식의 매개변수 개수와 반환타입이 일치해야 한다)
+	
+	MyFunction f = (a,b) -> a > b ? a : b;
+	int value = f.max(3,5); // 실제로는 람다식(익명 함수)이 호출된다.
+	
+	함수형 인터페이스는 람다식을 다루기 위해서 사용된다. 

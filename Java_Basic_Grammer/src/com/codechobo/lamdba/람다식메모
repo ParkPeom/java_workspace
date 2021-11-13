@@ -1,0 +1,124 @@
+
+람다식 
+함수(메서드)를 간단한 식으로 표현하는 방법
+
+int max(int a, int b) {
+	return a > b ? a : b;
+}
+이것을
+(a,b) -> a > b ? a : b
+(매개변수) -> 함수내용 
+익명 함수(이름이 없는 함수 , anonymous function)
+메서드의 반환타입,이름을 지운다 그 사이에 화살표를 넣는다 
+이름이 없어지니까 익명함수 라고 부른다
+
+함수와 메서드의 차이
+근본적으로 동일 , 함수는 일반적 용어 , 메서드는 객체지향개념 용어
+함수는 클래스에 독립적
+메서드는 클래스에 종속적
+
+람다식 : 함수(메서드를)를 간단히 표현 
+
+2. 반환값이 있는 경우 식이나 값만 적고 return문 생략 가능(끝에 ; 안붙임)
+
+3. 매개변수의 타입이 추론 가능하면 생략 가능 (대부분의 경우 생략 가능)
+
+람다식 작성하기 - 주의 사항
+1. 매개변수가 하나인 경우 괄호 () 생략 가능 
+타입이 있을경우에는 () 생략 불가 
+a -> a * a OK
+int a -> a * a // 에러
+
+2. 블록 안의 문장이 하나뿐 일 때 괄호{} 생략 가능 (끝에 ; 안붙임)
+(int i) -> {  괄호 생략 가능
+	
+} 
+
+(int i) -> System.out.println(i)
+
+단 하나뿐인 문장이 return문이면 괄호 {} 생략 불가 
+
+(int a, int b) -> { return a > b ? a : b ; } // OK
+(int a, int b) -> return a > b ? a : b  {} // 생략 불가  
+
+람다식은 익명 함수 ? 익명 객체 ! 
+람다식은 익명함수가 아니라 익명 객체이다. 
+
+익명 객체는 람다식
+
+익명클래스는 객체의 선언과 생성을 동시에 한다. 
+new Object() {
+	int max(int a,int b) {
+		return a > b ? a : b;
+	}
+}
+람다식(익명 객체)를 다루기 위한 참조변수가 필요. 참조변수의 타입은 ?
+
+	Object obj = new Object() {
+		int max(int a,int b) {
+			return a > b ? a : b;
+		}
+	}
+
+타입 obj = (a , b) -> a > b ? a : b ; // 어떤 타입 ? 
+타입은 Object 
+
+
+int value = obj.max(3,5); // 에러 Object 클래스에 max()가 없다.
+	
+	max() 메서드를 사용할수 없다. 
+	Object 리모콘으로 호출이 불가하다 
+
+	
+	함수형 인터페이스 - example
+	익명 객체를 람다식으로 대체
+	
+	List<String> list = Arrays.asList("abc","aaa","bbb","ddd","aaa");
+	Collections.sort(list, new Comparator<String>() {
+		public int compare(String s1, String s2) {
+			return s2.compareTo(s1);
+		}
+	});
+
+	interface Comparator<T> {
+		int compare(T o1, T o2);
+	}
+	
+	Collections.sort(list,(s1,s2)->s2.compareTo(s1));
+	
+	14-6 함수형 인터페이스 타입의 매개변수 , 반환타입 
+	함수형 인터페이스 타입의 매개변수 
+	
+	void aMethod(MyFunction f) {
+		f.myMethod(); // MyFunction에 정의된 메서드 호출
+	}
+	
+	MyFunction f = () -> System.out.println("myMethod()");
+	aMethod(f);
+	
+	aMethod(()-> System.out.println("myMethod()"));
+	
+	함수형 인터페이스 타입의 반환타입
+	
+	MyFunction mymethod() {
+		MyFunction f = () -> {}; // 함수형 인터페이스로 받아서
+		return f;  // 람다식으로 반환할수있다. 
+	}
+	--------> MyFunction myMethod() {
+				  return ()->{}; // 람다식으로 반환할수있다. 
+			  }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
