@@ -1,4 +1,4 @@
-package com.codechobo.memberProject;
+package com.codechobo.itwill.memberProject;
 public class MemberVO {
 	private int num;
 	private String username;	

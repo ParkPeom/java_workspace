@@ -1,4 +1,4 @@
-package com.codechobo.memberProject;
+package com.codechobo.itwill.memberProject;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package com.codechobo.memberProject;
+package com.codechobo.itwill.memberProject;
 import java.util.ArrayList;
 import java.util.List;
 
