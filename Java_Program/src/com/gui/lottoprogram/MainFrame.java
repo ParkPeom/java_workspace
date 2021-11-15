@@ -129,14 +129,12 @@ public class MainFrame extends JFrame{
 								i--;
 							}
 						}
-						
 						list.setListData(lotto);
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "숫자 설정을 다시 해주세요", "추첨 불가", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
 			if(b.getText().equals("초기화")) {
 				num1 = 0;
 				num2 = 0;
