@@ -8,23 +8,26 @@ import com.newlecture.app.service.Notice;
 import com.newlecture.app.service.NoticeService;
 
 public class NoticeConsole {
-
+	Scanner scan = new Scanner(System.in);
+	
 	private NoticeService service;
 	int page; // page 상태변수
+	private String searchWord;
+	private String searchField;
 	
 	public NoticeConsole() {
 		service = new NoticeService();
 		page = 1;
-	
+		searchWord = "";
+		searchField = "TITLE";
 	}
 	public void printNoticeList() throws ClassNotFoundException, SQLException {
-		List<Notice> list = service.getList(page); // page 상태변수에 따라서 서비스 
+		List<Notice> list = service.getList(page,searchField,searchWord); // page 상태변수에 따라서 서비스 검색 키워드 
 		// 목록을 추가할때 레코드 개수
 		int count = service.getCount(); // 지역내에서만 쓰는 변수
 		int lastPage = count/10;// count를 지역적으로만 쓰는 변수로 쓰면 될것 같다. 
 								// 100 -> 10 , 90->9, 93/10->9 넘어가니까...
-		lastPage = count % 10 == 0 ? lastPage : lastPage + 1; // 마지막 페이지 
-								
+		lastPage = count % 10 == 0 ? lastPage : lastPage + 1; // 마지막 페이지 							
 		System.out.println("───────────────────────────────────────");
 		System.out.printf("<공지사항> 총 %d 게시글\n" , count);
 		System.out.println("───────────────────────────────────────");
@@ -41,7 +44,7 @@ public class NoticeConsole {
  	}
 	public int inputNoticeMenu() {
 		Scanner scan = new Scanner(System.in);
-		System.out.print("1.상세조회 / 2. 이전 / 3. 다음 / 4. 글쓰기 5. 종료 > ");
+		System.out.print("1.상세조회 / 2. 이전 / 3. 다음 / 4. 글쓰기 5. 검색 6. 종료 > ");
 		String menu_ = scan.next(); // 임시변수에 담음
 		int menu = Integer.parseInt(menu_);
 		return menu;
@@ -64,5 +67,14 @@ public class NoticeConsole {
 			return; // 끝내기 
 		}
 		page++;
+	}
+	public void inputSearchWord() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("검색 범주(title/content/writerId)중에 하나를 입력하세요");
+		System.out.print(">");
+		searchField = scan.nextLine();
+		System.out.print("검색어 > ");
+		searchWord = scan.nextLine();
+		
 	}
 }

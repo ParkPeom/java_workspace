@@ -17,9 +17,10 @@ public class NoticeService {
 	private String pwd = "tiger";
 	private String driver = "oracle.jdbc.driver.OracleDriver";
 	
-	
-	public List<Notice> getList(int page) throws ClassNotFoundException, SQLException {
-		
+	// 검색하기 위한 기준 제목 ? 작성자 아이디 ? 컨텍트로 ? - 그걸 field 로 
+	// 검색어가 query 
+	public List<Notice> getList(int page , String field , String query) throws ClassNotFoundException, SQLException {
+					
 		int start = 1 + (page-1)*10;	// 1,11,21,31,..
 		int end = 10*page; // 10, 20, 30, 40...
 		
@@ -30,8 +31,10 @@ public class NoticeService {
 		
 		// 뷰처리를 하면 한줄로 끝낼수 있다.
 		// 뷰를 이용해서 목록을 출력할수있다. 
-		String sql = "SELECT * FROM NOTICE_VIEW WHERE NUM BETWEEN ? AND ?";
-		
+		String sql = "SELECT * FROM NOTICE_VIEW WHERE "+field+" LIKE ? AND NUM BETWEEN ? AND ?";
+									// 검색할수있는 필드의값 으로 검색
+									// '%A%' 는 값으로 채울거면 ? 로 함 
+									
 		Class.forName(driver);
 		Connection con = DriverManager.getConnection(url,uid,pwd);
 		// Statement st = con.createStatement();
@@ -39,8 +42,12 @@ public class NoticeService {
 		// sql문에 WHERE 절에 ? 를 주면 
 		PreparedStatement st = con.prepareStatement(sql); 
 		// ResultSet rs = st.executeQuery(sql);
-		st.setInt(1, start); // 시작
-		st.setInt(2, end); // 끝
+		
+		
+		// ? 값 들어갈것 
+		st.setString(1, "%"+query+"%");// 첫번째 물음표  제목검색 
+		st.setInt(2, start); // 시작
+		st.setInt(3, end); // 끝
 		
 		ResultSet rs = st.executeQuery();
 		
