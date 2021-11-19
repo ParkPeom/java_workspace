@@ -8,7 +8,6 @@ public class ProductOption {
 	public ProductOption() {
 		
 	}
-	
 	public void 재고현황(ArrayList<ProductVO> arr) {
 		for(int i = 0; i < arr.size(); i++) {
 			System.out.println(arr.get(i).getBrandName() + " " + arr.get(i).getMount() + "대"
