@@ -11,14 +11,15 @@ public class DBConn {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		}catch(Exception e) {}
 	}
-	Connection conn;
+	Connection conn; // DB연결된 상태(세션)을 담은 객체
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
+	
 	public DBConn() {		
 	}
 	public void getConn() {//DB연결
-		String url="jdbc:oracle:thin:@localhost:1521:xe";
-		String username="c##scott";
+		String url="jdbc:oracle:thin:@localhost:1522:orcl";
+		String username="scott";
 		String password="tiger";
 		try {
 			conn = DriverManager.getConnection(url, username, password);
