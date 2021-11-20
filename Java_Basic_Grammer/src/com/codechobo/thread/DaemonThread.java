@@ -17,6 +17,7 @@ public class DaemonThread implements Runnable {
 			}
 		}
 	}
+	// 데몬스레드 설정 
 	public static void main(String[] args) {
 		Thread thread = new Thread(new DaemonThread());
 		thread.setDaemon(true); // 데몬스레드로 설정
