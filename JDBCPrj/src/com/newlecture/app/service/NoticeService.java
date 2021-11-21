@@ -187,7 +187,6 @@ public class NoticeService {
 		PreparedStatement st = con.prepareStatement(sql); // st.execute 쿼리실행하든 그때 sql전달했지만
 								   // 미리 시쿼문을 준비해서 실행만 할수있게 준비
 		st.setInt(1, id);
-		
 		int result = st.executeUpdate();
 		
 		st.close();

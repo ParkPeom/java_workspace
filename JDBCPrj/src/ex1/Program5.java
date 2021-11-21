@@ -7,9 +7,8 @@ import com.newlecture.app.console.NoticeConsole;
 public class Program5 {
 
 	public Program5() {
-	
+		
 	}
-	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		NoticeConsole console = new NoticeConsole();
 		// int page; // page 상태변수
