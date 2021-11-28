@@ -30,7 +30,8 @@ public class EmployDAO {
 			System.out.println("\t2. 사원 수정");
 			System.out.println("\t3. 사원 추가");
 			System.out.println("\t4. 사원 삭제");
-			System.out.println("\t5. 종료");
+			System.out.println("\t5. 관리자 로그아웃 하기 ");
+			System.out.println("\t6. 시스템 전체 종료 ");
 			int choice = sc.nextInt();
 			
 			switch(choice) {
@@ -49,10 +50,15 @@ public class EmployDAO {
 			case 5:
 				// 종료 
 				break endloop; 
+			case 6:
+				// 전체 종료
+				System.out.println("시스템 전체 종료 되었습니다.");
+				System.exit(0);
 			default :
 				System.out.println("다시 입력");
 			}
 		}
+		System.out.println("로그아웃 되셨습니다.");
 	}
 	
 	// 사원 조회 
@@ -104,7 +110,6 @@ public class EmployDAO {
 		arremployee.add(new EmployDTO(num , setMessage("이름 추가 ")
 				, setMessage("전화번호 추가 ") , setMessage("직급 추가 ")
 				, setMessage("성별 추가 ")));
-		
 		String url = "jdbc:oracle:thin:@localhost:1522/orcl";
 		String sql = "INSERT INTO EMPLOYEE (EMPNO,NAME,TEL,JOB,GENDER)"
 				+ " VALUES(?,?,?,?,?)";
@@ -135,10 +140,9 @@ public class EmployDAO {
 		System.out.println("삭제하실 사원번호를 적어주세요. ");
 		String empno = sc.nextLine();
 		int empnoNo = Integer.parseInt(empno);
-		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
 		String url = "jdbc:oracle:thin:@localhost:1522/orcl";
 		String sql = "DELETE EMPLOYEE WHERE EMPNO = ? ";
-		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection con = DriverManager.getConnection(url, "scott", "tiger");
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1,empnoNo);		

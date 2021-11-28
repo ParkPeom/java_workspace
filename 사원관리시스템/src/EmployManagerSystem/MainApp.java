@@ -9,10 +9,7 @@ import Manager.Login;
 import dto.ManagerDTO;
 
 public class MainApp {
-
-	public MainApp() {
-	}
-	
+	public MainApp() {}
 	public void start() throws ClassNotFoundException, SQLException {
 		Scanner sc = new Scanner(System.in);
 		Join j = new Join();
