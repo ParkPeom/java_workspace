@@ -23,8 +23,6 @@ public class EmployDTO {
 		this.gender = gender;
 	}
 
-
-
 	public int getEmpno() {
 		return empno;
 	}
