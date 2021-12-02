@@ -59,14 +59,12 @@ public class InsertStudentApp {
 			// 3. 접속된 DBMS 서버에 SQL 명령을 전달하기 위한 Statement 인스턴스를 반환받아 저장
 			stmt = con.createStatement(); // SQL 문을 보내기 위한 객체 
 			
-			
 			// Connection 인스턴스로 부터 SQL 명령을 전달할 수 있는 Statement 인스턴스를 생성하여 반환하는 메서드
-			
 			// 4. Statement 인스턴스로 접속된 DBMS 서버에 SQL 명령을 전달하여 실행하고 실행된 결과값을 
 			// 반환받아 저장 
 			// sStatement.executeUpdate(String sql) : INSERT , UPDATE , DELETE 명령을 서버에 전달하는 메서드
 			// => 조작행의 갯수(int)를 반환 = SQLException 발생 
-			String sql = "insert into student values (1000,'홍길동','010-1234-5678','서울시 강남구','2001-01-01')";
+			String sql = "insert into student values (5000,'이범수','010-5453-5678','제주시','2011-01-13')";
 			int rows = stmt.executeUpdate(sql); // 레코드의 건수 익스큐트
 			
 			// 5. SQL 명령의 실행 결과를 처리 - 출력(프로그램) 또는 반환(메서드)
@@ -81,6 +79,7 @@ public class InsertStudentApp {
 				// nullpointerexception 이 발생할 경우
 				// if구문을 이용하여 NullPointerException 발생 방지
 				// NULL 이 아닐떄만 close()를 호출 
+				// ---사용했던 모든 자원 해제--- 
 				if(stmt!=null) stmt.close(); // 값이 있을떄 닫아준다. 
 				if(con!=null) con.close();
 			} catch (SQLException e) {
