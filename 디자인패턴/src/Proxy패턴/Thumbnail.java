@@ -25,7 +25,7 @@ class RealThumbnail implements Thumbnail {
 	}	
 }
 
-// 대리인 클래스 
+// 대리인 클래스 (프록시를 생성한다)
 class ProxyThumbnail implements Thumbnail {
 	private String title;
 	private String movieUrl;
@@ -41,10 +41,14 @@ class ProxyThumbnail implements Thumbnail {
 		System.out.println("제목 : " + title);
 	}
 	
+	// 영상데이터가 필요한 showPreview 
+	// 그때 RealThumbnail 객체를 생성해서 
+	// 그 실제 썸네일 객체를 통해 실행을 한다. 
 	public void showPreview() {
 		if(realThumbnail == null) {
 			realThumbnail = new RealThumbnail(title,movieUrl);
 	}
+	// // 그 실제 썸네일 객체를 통해 실행을 한다. ( 대표님을 불러오는것 ) 
 	realThumbnail.showPreview();	
 	}
 }

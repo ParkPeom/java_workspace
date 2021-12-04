@@ -16,6 +16,7 @@ public class MyProgram {
 		thumbnails.add(new ProxyThumbnail("객체지향 프로그래밍","/oodp.mp4"));
 		thumbnails.add(new ProxyThumbnail("블록체인의 원리","/blockchain.mp4"));
 	
+		// 하나하나 제목을 표시한다.
 		for(Thumbnail thumbnail : thumbnails) {
 			thumbnail.showTitle();
 		}
@@ -27,6 +28,9 @@ public class MyProgram {
 		제목 : 블록체인의 원리
 		*/
 		
+		// 마우스를 썸네일에 올릴때 에야 실제 객체 생성 시
+		// 한번 RealThumbnail 으로 생성한 썸네일은 다시 영상을 박아 오지 않는다 
+		// 이 처럼 필요할 떄만 실제 객체를 생성한다. 보다 효율적인 프로그래밍이 된다.  
 		thumbnails.get(2).showPreview();
 		thumbnails.get(2).showPreview();
 		thumbnails.get(4).showPreview();
