@@ -35,6 +35,7 @@ public class DataSourceApp {
 		//PoolDataSource.getSconnection() : PoolDataSouerce 인스턴스에 미리 생성되어 저장된
 		// Connection 인스턴스를 중 하나를 한반환하는 메서드
 		Connection con1 = pds.getConnection();
+		
 		System.out.println("con1 = " + con1);
 		// PoolDataSource.getAvailableConnectionsCount() : PoolDataSource 인스턴스에 저장된
 		// 사용가능한 Connection 인스턴스의 갯수를 반환하는 메서드 
@@ -47,15 +48,15 @@ public class DataSourceApp {
 		
 		Connection con2 = pds.getConnection();
 		System.out.println("con2 = " + con2);
-		con2.close();
+		con2.close(); // 사용한 커넥션 제거 
 		
 		Connection con3 = pds.getConnection();
 		System.out.println("con3 = " + con3);
-		con3.close();
+		con3.close(); // 사용한 커넥션 제거 
 
 		Connection con4 = pds.getConnection();
-		System.out.println("con2 = " + con4);
-		con4.close();
+		System.out.println("con4 = " + con4);
+		con4.close(); // 사용한 커넥션 제거 
 
 		System.out.println("사용 가능한 Connection 인스턴스 갯수 = " + pds.getAvailableConnectionsCount());
 		System.out.println("================================================");
