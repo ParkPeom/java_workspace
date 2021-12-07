@@ -57,6 +57,7 @@ public class SqlMinusApp {
 						int columnCount = rsmd.getColumnCount();
 						System.out.println("===============================================================");
 						// 검색행의 컬럼명을 반환받아 출력 
+						
 						for(int i=1; i<=columnCount;i++) {
 							System.out.print(rsmd.getColumnLabel(i)+"\t\t");
 							

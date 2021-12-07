@@ -43,6 +43,9 @@ public class ResultSetCursorApp {
 		// => ResultSet.TYPE_FORWARD_ONLY : ResultSet 커서를 다음행으로만 이동(기본)
 		// => ResultSet.TYPE_SCROLL_INSENSITIVE : ResultSet 커서를 원하는 행으로 이동 - 조작행 미반영 
 		// => ResultSet.TYPE_SCROLL_SENSITIVE : ResultSet 커서를 원하는 행으로 이동 - 조작행 반영
+		
+		
+		
 		//resultSetConcurrency : ResultSet 커서 위치의 행에 대한 조작 관련 속성 - 정수값 대신 상수 사용
 		// => ResultSet.CONCUR_READ_ONLY : ResultSet 커서 위치의 행에 대한 조작 불가능
 		// => ResultSet.CONCUR_UPDATABLE : ResultSet 커서 위치의 행에 대한 조작 가능
