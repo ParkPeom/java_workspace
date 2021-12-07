@@ -27,7 +27,8 @@ public class StudentDTO {
 	private String name;
 	private String phone;
 	private String address;
-	private String birthday; // java.sql.Date 써도되는데 String도 됨 Date 잘안씀 
+	private String birthday; // java.sql.Date 써도되는데 String도 됨 Date 잘안씀
+							 // 입출력할때 String이 편함
 	
 	// Ctrl + space >> Constructor 선택 
 	public StudentDTO() {

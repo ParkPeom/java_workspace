@@ -5,10 +5,13 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -92,9 +95,11 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		Object[] title={"학번","이름","전화번호","주소","생년월일"};
 		table=new JTable(new DefaultTableModel(title, 0));
 		table.setEnabled(false);
-		table.getTableHeader().setReorderingAllowed(false);
-		table.getTableHeader().setResizingAllowed(false);
+		table.getTableHeader().setReorderingAllowed(false); 
+		table.getTableHeader().setResizingAllowed(false); // 기록 , 크기 변경 못하게 함 
 
+		// JTable 컴퍼넌트에 모든 학생정보를 검색하여 출력하는 메서드 호출 
+		displayAllStudent();
 		JScrollPane sp=new JScrollPane(table);
 		
 		add(sp, "Center");
@@ -188,7 +193,6 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			searchB.setEnabled(true);
 		}
 	}
-
 	public void clear() {
 		noTF.setText("");
 		nameTF.setText("");
@@ -208,7 +212,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		new StudentGUIApp();
 	}
 	
-	public void actionPerformed(ActionEvent ev) {
+	public void actionPerformed(ActionEvent ev) { // 버튼에서 이벤트 처리 메서드 
 		Component c = (Component) ev.getSource();
 		try {
 			if (c == addB) {//추가 버튼을 누른 경우
@@ -244,5 +248,59 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			System.out.println("예외 발생 : " + e);
 		}		
 	}
-
+	
+	// STUDENT 테이블에 저장된 모든 학생정보를 검색하여 JTable컴퍼넌트에 출력하는 메서드
+	// => 생성자 또는 모든 이벤트에 대한 이벤트 처리 메서드에서 호출  
+	public void displayAllStudent() {
+		// STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 DAO클래스의 메서드 호출 
+		// StudentDAO.getDAO() : 이미 생성된 StudentDAO 인스턴스를 반환 
+		// studentList 모든 학생정보를 반환받아 가져옴 ( 중복된 코드를 최소화 해야함 JDBC로 ㄴㄴ 가져다가 쓰면됨 )
+											// CRUD로 손쉽게 만들고 유지보수가 쉽다 
+		List<StudentDTO> studentList = StudentDAO.getDAO().selectAllStudent();
+		
+		// List.isEmpty() : List 인스턴스에 저장된 요소가 있는 경우 false반환 하고 저장된
+		// 요소가 하나도 없는 경우 true 반환 하는 메서드 
+		if(studentList.isEmpty()) { // 비어있으면 true
+			// JOptionPane. : 기본적인 다이얼로그를 제공하는 컴퍼넌트 
+			// 부모는 this 
+			// => 메세지를 출려가는 다이얼로그를 제공하는 메서드 
+			JOptionPane.showMessageDialog(this, "저장된 학생정보가 없습니다.");
+			return; // 메서드 종료 
+		}
+		
+		// JTable.getModel() : JTable 컴퍼넌트에 종속된 TableModel 인스턴스를 반환하는 메서드 
+		
+		// TableModel 행을 제어할수있는 
+		// DefaultTableModel : TableModel 인터페이스 상속받아서 만든 자식테이블
+		// => - JTable 컴퍼너는트의 행정보를 제어하는 인스턴스 
+		// => Table Model 인스턴스를 DefaultTableModel 클래스로 객체 형변환 하여 저장 
+		
+		DefaultTableModel model = (DefaultTableModel)table.getModel();
+		
+		
+		// 기존 학생을 제거하고 
+		// 기존 JTable 컴퍼넌트에 존재하는 모든 행을 하나씩 반복적으로 제거한다 - JTable 컴퍼넌트 초기화 
+		// model.getRowCount() : 저장된 행의 갯수를 반환하는 메서드 
+		
+		for(int i = model.getRowCount(); i > 0 ; i--) {
+			// DefaultTableModel.removeRow(int row ) :DefaultTableModel 인스턴스에 저장된
+			// 행을 첨자(RowIndex)를 전달받아첨자 위치의 행을 제거하는 메서드
+			model.removeRow(0); // 첫번쨰 행 제거 
+		}
+		//JTable 컴퍼넌트에 검색된 학생정보를 저장하여 출력
+		// => DefaultTableModel 컴퍼넌트에 검색된 학생정보를 반복적으로 행으로 추가하여 
+		for(StudentDTO student : studentList) {
+			// Vector 인스턴스를 생성하여 StudentDTO 인스턴스를 필드값을 요소로 추가 
+			Vector<Object> rowData = new Vector<Object>(); // 열의 갯수를 몰라서 Vector 
+			rowData.add(student.getNo()); // 열들을 가져다가 백터로 한행을 만듬 
+			rowData.add(student.getName()); // 열들을 가져다가 백터로 한행을 만듬 
+			rowData.add(student.getPhone()); // 열들을 가져다가 백터로 한행을 만듬 
+			rowData.add(student.getAddress()); // 열들을 가져다가 백터로 한행을 만듬 
+			rowData.add(student.getBirthday()); // 열들을 가져다가 백터로 한행을 만듬 
+			
+			// DefaultTableModel.addRow(Vector rowData)
+			// DefaultTableModel 인스턴스의 행으로 추가하는 메서드 
+			model.addRow(rowData);
+		}
+	}
 }
