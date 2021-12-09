@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //DAO(Data Access Object) 클래스 : 저장매체에 대한 행정보의 저장,변경,삭제,검색(CRUD) 기능을 
-//메소드로 제공하는 클래스
+// 메소드로 제공하는 클래스
 // => 저장매체 : 데이타를 행(레코드) 단위로 저장하여 처리하기 위한 하드웨어 또는 소프트웨어 - ex)File, DBMS 등
 // => 인터페이스를 상속받아 작성하는 것을 권장 - DAO 클래스의 메소드 작성 규칙 제공 : 유지보수의 효율성 증가
 // => 싱글톤 클래스(프로그램에 인스턴스를 하나만 제공하는 클래스)로 작성하는 것을 권장
@@ -44,7 +44,7 @@ public class StudentDAO extends JdbcDAO {
 		return _dao;
 	}
 	
-	//학생정보를 전달받아 STUDENT 테이블에 새로운 행으로 삽입하여 저장하고 삽입행의 갯수를 반환하는 메소드
+	// GUI 에서 입력한 학생정보를 전달받아 STUDENT 테이블에 새로운 행으로 삽입하여 저장하고 삽입행의 갯수를 반환하는 메소드
 	public int insertStudent(StudentDTO student) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -151,9 +151,8 @@ public class StudentDAO extends JdbcDAO {
 		} finally {
 			close(con, pstmt, rs);
 		}
-		return student;
+		return student; // DTO 반환 
 	}
-	
 	
 	//이름을 전달받아 STUDENT 테이블에 저장된 해당 이름의 학생정보를 검색하여 반환하는 메소드
 	// => 다중행 검색 : 검색행이 여러개인 경우 List 인스턴스 반환
@@ -164,13 +163,11 @@ public class StudentDAO extends JdbcDAO {
 		List<StudentDTO> studentList=new ArrayList<StudentDTO>();
 		try {
 			con=getConnection();
-			
-			String sql="select * from student where name=? order by no";
+						
+			String sql="select * from student where name like '%'||?||'%' order by no";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, name);
-			
 			rs=pstmt.executeQuery();
-			
 			while(rs.next()) {
 				StudentDTO student=new StudentDTO();
 				student.setNo(rs.getInt("no"));
@@ -179,7 +176,7 @@ public class StudentDAO extends JdbcDAO {
 				student.setAddress(rs.getString("address"));
 				student.setBirthday(rs.getString("birthday").substring(0,10));
 				//List 인스턴스에 요소(Element >> 학생정보) 추가하여 저장
-				studentList.add(student);
+				studentList.add(student); // DTO를 만들어서 리스트에 추가한다. 
 			}
 		} catch (SQLException e) {
 			System.out.println("[에러]selectNameStudent() 메소드의 SQL 오류 = "+e.getMessage());
@@ -190,6 +187,7 @@ public class StudentDAO extends JdbcDAO {
 	}
 	
 	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 메소드
+	
 	public List<StudentDTO> selectAllStudent() {
 		Connection con=null;
 		PreparedStatement pstmt=null;
