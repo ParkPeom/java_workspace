@@ -27,15 +27,12 @@ public class StudentDAO extends JdbcDAO implements StudentDAOAble{
 	private StudentDAO() {
 		
 	}
-	
 	static {
 		dao = new StudentDAO();
 	}
-	
 	public static StudentDAO getDAO() {
 		return dao;
 	}
-	
 	@Override
 	public int insertStudent(StudentDTO student) {
 		
@@ -129,22 +126,25 @@ public class StudentDAO extends JdbcDAO implements StudentDAOAble{
 	@Override
 	public List<StudentDTO> selectNameStudent(String name) {
 		
+		List<StudentDTO> studentList = null;
 		try { 
 			con = getConnection();
-			String sql = "select * from student order by no";
+			String sql = "select * from student where name = ?";
+			
 			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				// 테이블값을 -> DTO 값에 넣는다. -> 리스트에 담는다.
 				StudentDTO student = new StudentDTO();
-				
+				studentList = new ArrayList<StudentDTO>();
 				student.setNo(rs.getInt("no"));
 				student.setName(rs.getString("name"));
 				student.setPhone(rs.getString("phone"));
 				student.setAddress(rs.getString("address"));
-				student.setBirthday(rs.getString("birthday").substring(0,10));
-				
+				student.setBirthday(rs.getString("birthday"));
 				studentList.add(student);
 			}
 		} catch(SQLException e ) {

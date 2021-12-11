@@ -25,8 +25,8 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 
-	public static final int NONE = 0; // ÃÊ±âÈ­
-	public static final int ADD = 1; // Ãß°¡
+	public static final int NONE = 0;   // ÃÊ±âÈ­
+	public static final int ADD = 1;    // Ãß°¡
 	public static final int DELETE = 2; // Ãß°¡
 	public static final int UPDATE = 3; // Ãß°¡
 	public static final int UPDATE_CHANGE = 4; // Ãß°¡
@@ -74,9 +74,9 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		// °¢°¢ Ãß°¡ÇÑ 5°³ ÆÐ³ÎÀ»  Çà¿­ GridLayout(5,1) Æ²¿¡ Ãß°¡
 		left.add(pno);
 		left.add(pname);
-		left.add(pbirthday);
 		left.add(pphone);
 		left.add(paddress);
+		left.add(pbirthday);
 		
 		JPanel bottom = new JPanel(); // ¾Æ·¡ 
 		bottom.setLayout(new GridLayout(1,5)); // 1Çà 5¿­ 
@@ -93,6 +93,8 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		bottom.add(searchB = new JButton("°Ë »ö"));	
 		searchB.addActionListener(this); // ¹öÆ° B¸¦ ´­·¶À»¶§ ¾×¼Ç ÀÌº¥Æ® 
 		
+		bottom.add(cancelB = new JButton("ÃÊ±âÈ­"));
+		cancelB.addActionListener(this);
 		
 		Object[] title = {"ÇÐ¹ø","ÀÌ¸§","ÀüÈ­¹øÈ£","ÁÖ¼Ò","»ý³â¿ùÀÏ"}; // ÄÃ·³¸í 
 		table = new JTable(new DefaultTableModel(title,0)); // ÄÃ·³¸í , 0
@@ -108,6 +110,12 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		add(bottom, "South"); // ³²ÂÊ ¹èÄ¡ 
 		cmd = NONE; // ÃÊ±âÈ­ 
 		initialize();
+		
+		// //JTable ÄÄÆÛ³ÍÆ®¿¡ ¸ðµç ÇÐ»ýÁ¤º¸¸¦ °Ë»öÇÏ¿© Ãâ·ÂÇÏ´Â ¸Þ¼Òµå È£Ãâ
+	
+		displayAllStudent();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 	
 	public void initialize() {
@@ -147,7 +155,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			break ;
 			
 		case SEARCH: // Ã£±â ¹öÆ° 
-			noTF.setEditable(true);
+			nameTF.setEditable(true);
 			break;
 		case NONE:
 			noTF.setEditable(false);
@@ -160,6 +168,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	
 	// ¹öÆ° ºñÈ°¼ºÈ­ , È°¼ºÈ£ 
 	public void setEnable(int n) {
+		
 		addB.setEnabled(false);    // Ãß°¡ ¹öÆ° 
 		deleteB.setEnabled(false); // »èÁ¦ ¹öÆ°
 		updateB.setEnabled(false); // º¯°æ ¹öÆ°
@@ -227,25 +236,34 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 				if(cmd != ADD) { // ADD »óÅÂ°¡ ¾Æ´Ï¸é ? È°¼ºÈ­ ½ÃÅ´
 					setEnable(ADD);
 				} else {
-					// ¸Þ¼­µå ½ÇÇà 
+					addStudent();
 				}
 			} else if(c == deleteB) {
 				if(cmd != DELETE) {
 					setEnable(DELETE);
 				} else {
-					// ¸Þ¼­µå ½ÇÇà
+					removeStudent();
 				}
 			} else if(c == updateB) {
 				if(cmd != UPDATE && cmd != UPDATE_CHANGE) {
 					setEnable(UPDATE);
 				} else if( cmd != UPDATE_CHANGE){
-					// ¸Þ¼­µå ½ÇÇà
+					searchNoStudent(); // ¹øÈ£·Î ÀÏ´Ü ÀÖ´ÂÁö °Ë»ö 
 				} else {
-					// ¸Þ¼­µå ½ÇÇà 
+					modifyStudent(); // UPDATE_CHANGE ÀÌ¸é º¯°æ 
+					displayAllStudent();
+					initDisplay();
 				}
 			} else if(c == cancelB) {
 				// ¸Þ¼­µå ½ÇÇà
+				displayAllStudent();
 				initDisplay();
+			} else if(c == searchB) {
+				if(cmd != SEARCH) {
+					setEnable(SEARCH);
+				} else {
+					searchNameStudent(); // ÀÌ¸§À¸·Î °Ë»öÇÑ´Ù.
+				}
 			}
 		} catch(Exception ex) {
 			System.out.println("¿¹¿Ü ¹ß»ý : " + ex);
@@ -253,13 +271,12 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	}
 	
 	//----------------¹öÆ°À» ´©¸£¸é ¹ß»ýÇÏ´Â ¸Þ¼Òµå----------------
+	// µ¥ÀÌÅÍ°ªµéÀ» Å×ÀÌºí¿¡ ³Ö¾î¼­ ´Ù½Ã º¸¿©ÁØ´Ù.
 	public void displayAllStudent() {
 		
 		//±âÁ¸ JTable ÄÄÆÛ³ÍÆ®¿¡ Á¸ÀçÇÏ´Â ¸ðµç ÇàÀ» ÇÏ³ª¾¿ ¹Ýº¹ÀûÀ¸·Î Á¦°Å List<StudentDTO> studentList = StudentDAO.getDAO().selectAllStudent();
 		List<StudentDTO> studentList = StudentDAO.getDAO().selectAllStudent();
-		
-		if(studentList.isEmpty()) { // ºñ¾îÀÖÀ¸¸é true
-			
+		if(studentList.isEmpty()) { // ºñ¾îÀÖÀ¸¸é true		
 			JOptionPane.showMessageDialog(this, "ÀúÀåµÈ ÇÐ»ýÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
 			return;
 		}
@@ -269,8 +286,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		// => TableModel ÀÎ½ºÅÏ½º¸¦ DefaultTableModel Å¬·¡½º·Î °´Ã¼ Çüº¯È¯ ÇÏ¿© ÀúÀå
 		DefaultTableModel model = (DefaultTableModel)table.getModel();
 		
-		//±âÁ¸ JTable ÄÄÆÛ³ÍÆ®¿¡ Á¸ÀçÇÏ´Â ¸ðµç ÇàÀ» ÇÏ³ª¾¿ ¹Ýº¹ÀûÀ¸·Î Á¦°Å - JTable ÄÄÆÛ³ÍÆ®ÀÇ ÃÊ±âÈ­d
-		
+		//±âÁ¸ JTable ÄÄÆÛ³ÍÆ®¿¡ Á¸ÀçÇÏ´Â ¸ðµç ÇàÀ» ÇÏ³ª¾¿ ¹Ýº¹ÀûÀ¸·Î Á¦°Å - JTable ÄÄÆÛ³ÍÆ®ÀÇ ÃÊ±âÈ­d	
 		for(int i=model.getRowCount(); i>0; i--) {
 			model.removeRow(0); // Ã¹¹øÂ° Çà Á¦°Å 
 		}
@@ -329,7 +345,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		}
 		
 		// Á¤±Ô½Ä Ç¥Çö½Ä °Ë»ç
-		String nameReg = "^([°¡-?]{2,7})$";
+		String nameReg = "^([°¡-ÆR]{2,7})$";
 		if(!Pattern.matches(nameReg, name)) {
 			JOptionPane.showMessageDialog(this, "ÀÌ¸§Àº ÇÑ±Û 2~7ÀÚ·Î Àû¾îÁÖ¼¼¿ä");
 			nameTF.requestFocus();
@@ -344,7 +360,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String phoneReg = "(01[016789])-\\{3,4}-\\d{4}";
+		String phoneReg = "(01[016789])-\\d{3,4}-\\d{4}";
 
 		if(!Pattern.matches(phoneReg, phone)) {
 			JOptionPane.showMessageDialog(this, "ÀüÈ­¹øÈ£¸¦ Çü½Ä¿¡ ¸Â°Ô ÀÔ·ÂÇØÁÖ¼¼¿ä.");
@@ -368,13 +384,15 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String birthdayReg ="(19|20)\\d{2}-(0[1-9]|[0-2])-(0[1-9]|12][0-9]|3[01])";
-	
+		/*
+		String birthdayReg="(19|20)\\d{2}-(1-9|1[0-2])-(0[1-9]|[12][0-9]|3[0-1]";
+		
 		if(!Pattern.matches(birthdayReg, birthday)) {
-			JOptionPane.showMessageDialog(this, "ÀüÈ­¹øÈ£¸¦ Çü½Ä¿¡ ¸Â°Ô ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "»ýÀÏÀ» Çü½Ä¿¡ ¸Â°Ô ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 			birthdayTF.requestFocus();
 			return;
 		}
+		*/
 		
 		// ÀÔ·Â°ªÀ» ³ÖÀ½ 
 		StudentDTO student = new StudentDTO();
@@ -473,7 +491,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String nameReg ="^([°¡-?]{2,7})$";
+		String nameReg = "^([°¡-ÆR]{2,7})$";
 		if(!Pattern.matches(nameReg, name)) {
 			JOptionPane.showMessageDialog(this, "ÀÌ¸§Àº ¹Ýµå½Ã 2~7ÀÚ·Î Àû¾îÁÖ¼¼¿ä");
 			nameTF.requestFocus();
@@ -489,6 +507,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		}
 		
 		String phoneReg="(01[016789])-\\d{3,4}-\\d{4}";
+		
 		if(!Pattern.matches(phoneReg, phone)) {
 			JOptionPane.showMessageDialog(this, "ÀüÈ­¹øÈ£¸¦ Çü½Ä¿¡ ¸Â°Ô ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
 			phoneTF.requestFocus();
@@ -511,12 +530,14 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
+		/*
 		String birthdayReg="(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 		if(!Pattern.matches(birthdayReg, birthday)) {
 			JOptionPane.showMessageDialog(this, "»ý³â¿ùÀÏÀ» Çü½Ä¿¡ ¸Â°Ô ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
 			birthdayTF.requestFocus();
 			return;
 		}
+		*/
 		
 		// UPDATE_CHANGE ¿¡¼­ ÀÔ·ÂÇÑ º¯°æÇÑ °ªµéÀ» Ãß°¡ÇÑ´Ù.
 		StudentDTO student = new StudentDTO();
@@ -532,7 +553,8 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	}
 	
 	public void searchNameStudent() {
-		String name=nameTF.getText();
+		
+		String name = nameTF.getText();
 		
 		if(name.equals("")) {
 			JOptionPane.showMessageDialog(this, "ÀÌ¸§À» ¹Ýµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
@@ -540,7 +562,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
-		String nameReg="^([°¡-?]{2,7})$";//2~7 ¹üÀ§ÀÇ ÇÑ±ÛÀ» Ç¥ÇöÇÑ Á¤±Ô Ç¥Çö½Ä
+		String nameReg = "^[°¡-ÆR]{2,7}$";//2~7 ¹üÀ§ÀÇ ÇÑ±ÛÀ» Ç¥ÇöÇÑ Á¤±Ô Ç¥Çö½Ä
 		if(!Pattern.matches(nameReg, name)) {
 			JOptionPane.showMessageDialog(this, "ÀÌ¸§Àº 2~7 ¹üÀ§ÀÇ ÇÑ±Û¸¸ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
 			nameTF.requestFocus();
@@ -551,7 +573,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		List<StudentDTO> studentList = StudentDAO.getDAO().selectNameStudent(name);
 		
 		// getModel() :  JTableÀÌ °®°í ÀÖ´Â µ¥ÀÌÅÍ¸¦ ´ã°í ÀÖ´Â °´Ã¼ÀÎ TableModel°´Ã¼°¡ ¸®ÅÏµË´Ï´Ù.
-		DefaultTableModel model=(DefaultTableModel)table.getModel();
+		DefaultTableModel model = (DefaultTableModel)table.getModel();
 		
 		// ±âÁ¸ Å×ÀÌºí °ªµéÀ» »èÁ¦ÇÔ 
 		for(int i = model.getRowCount(); i > 0; i--) {

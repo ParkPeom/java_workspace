@@ -20,22 +20,22 @@ public abstract class JdbcDAO {
 		pds = PoolDataSourceFactory.getPoolDataSource();
 		
 		try {
-			pds.setConnectionFactoryClassName("oracle.jdbc.driver.oracleDriver");
+			pds.setConnectionFactoryClassName("oracle.jdbc.driver.OracleDriver");
 			pds.setURL("jdbc:oracle:thin:@localhost:1522:orcl");	
 			pds.setUser("scott");
 			pds.setPassword("tiger");
 			pds.setInitialPoolSize(3); // 커넥션풀 3개시작 
 			pds.setMaxPoolSize(5); // 커넥션풀 최대 
 		} catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println("[에러] SQL 연결 할수 없습니다.1");
 		}
 	}
 	public Connection getConnection() {
-		Connection con = null;
+			Connection con = null;
 		try {
-			con = pds.getConnection();
+			 con = pds.getConnection();
 		} catch (SQLException e) {
-			System.out.println("[에러] SQL 연결 할수 없습니다.");
+			System.out.println("[에러] SQL 연결 할수 없습니다.2");
 		}
 		return con;
 	}
