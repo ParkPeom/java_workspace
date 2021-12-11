@@ -4,20 +4,19 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+// 임포트 시켜줘야 함 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
-// 임포트 시켜줘야 함 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 // 컴퍼넌트(Component) 에서 발생된 이벤트(Event)에 대한 처리 방법
 // 1. 컴퍼넌트에서는 다양한 이벤트 발생 - XXXEvent 인스턴스 생성 (XXX는 이벤트 이름)
 // ex) JButton 컴퍼넌트을 누르거나 JTextField에서 Enter를 입력하면 ActionEvent 발생
@@ -39,9 +38,6 @@ public class WindowsBuilderApp extends JFrame implements ActionListener   {
 	private JButton black;
 	private JTextField field;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -55,9 +51,6 @@ public class WindowsBuilderApp extends JFrame implements ActionListener   {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public WindowsBuilderApp() {
 		setTitle("WindowBuilder");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,6 +59,9 @@ public class WindowsBuilderApp extends JFrame implements ActionListener   {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		JMenuBar mb = new JMenuBar();
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -102,11 +98,12 @@ public class WindowsBuilderApp extends JFrame implements ActionListener   {
 		field.setFont(new Font("나눔고딕코딩", Font.BOLD, 18));
 		contentPane.add(field, BorderLayout.SOUTH);
 		field.setColumns(10);
-
 		
 		// 중요 .
 		// 컴퍼넌트에서 ActionEvent가 발생될경우 현재 클래스로 생성된 인스턴스의 선언된 actionPerformed() 이벤트 처리 메서드 호출 
 		// => actionPerformed() 메서드 자동 호출 - 이벤트 핸들러 등록 해줘야 한다.
+		
+		// 액션 이벤트 추가 (내가처리할게) this = 현재 클래스를 표현하고자 하는 인스턴스 나 
 		red.addActionListener(this);
 		green.addActionListener(this);
 		blue.addActionListener(this);
@@ -142,7 +139,7 @@ public class WindowsBuilderApp extends JFrame implements ActionListener   {
 		}
 		// 컴퍼넌트와 이벤트가 발생된 컴퍼넌트를 비교하여 이벤트 처리 	
 		if(component == red) {
-			area.setForeground(Color.RED);
+			area.setForeground(Color.RED); //이벤트 처리 명령 
 		} else if(component == green) {
 			area.setForeground(Color.GREEN);
 		} else if(component == blue) {
@@ -153,14 +150,14 @@ public class WindowsBuilderApp extends JFrame implements ActionListener   {
 			area.setForeground(Color.BLACK);
 		} else if(component == field) {
 			// JTextField.getText() : JTextField 컴퍼넌트의 입력값을 반환하는 메서드
-			String text = field.getText();
+			String text = field.getText(); // 사용자 입력값을 가져옴 
 			
 			if(!text.equals("")) {
 				//JTextArea.append(String text) : JTextArea 컴퍼넌트의 문자열을 추가하는 메서드
 				area.append("[홍길동]" + text + "\n");
 				// 컴퍼넌트의 입력값을 변경하는 메서드 
-				field.setText("");
-			}
-		}
+				field.setText(""); // 다른 텍스트를 입력받기 위해 컴퍼넌트 초기화 
+			} 
+		} 
 	}
 }
