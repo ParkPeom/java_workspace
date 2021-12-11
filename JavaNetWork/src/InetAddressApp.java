@@ -4,7 +4,7 @@ import java.net.UnknownHostException;
 public class InetAddressApp {
 	
 	public static void main(String[] args) throws UnknownHostException {
-		//InetAddress : 네트워크 주소(IP Address)와 컴퓨터 이름(HostName)을 저장하기 위한 클래스
+				//InetAddress : 네트워크 주소(IP Address)와 컴퓨터 이름(HostName)을 저장하기 위한 클래스
 				//InetAddress.getLocalHost() : 로컬 컴퓨터의 네트워크 주소와 컴퓨터 이름이 저장된 
 				//InetAddress 인스턴스를 생성하여 반환하는 메소드
 				// => UnknownHostException 발생 : 네트워크에서 컴퓨터 이름의 컴퓨터를 검색할 수 없는 경우 발생되는 예외
