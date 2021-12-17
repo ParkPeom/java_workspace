@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+<!--  style 태그 : 박스모델에 디자인을 제공하기 위한 태그  -->
+<style type="text/css">
+table {
+		border : 1px solid black;
+		border-collapse: collapse;	
+	  }
+th,td {
+	border: 1px solid black;
+	width: 100px;
+	padding: 20px;
+	text-align: center;
+}
+
+caption {
+	font-size: 24px;
+	line-height : 40px;
+	letter-spacing:15px;
+}
+	
+</style>
+
+</head>
+<body>
+	<h1>table 태그</h1>
+	<hr>
+	<!-- HTML5에서는 표를 보다 구조적으로 표현 하기 위해 thead , tbody , tfoot 태그 추가  -->
+	<!-- Summary 속성 : 표에 대한 설명을 속성값으로 설정 -->
+	<table summary="객실 안내">
+		<!-- caption 태그 : 표 제목 출력  -->
+		<caption>객실표</caption>
+		<!-- thead 태그 : 표 머릿부를 표현하기 위한 태그 -->
+		<thead>
+			<tr>
+				<th>건물명</th><th>방이름</th><th>크기</th><th>가격</th>
+			</tr>
+		</thead>
+		
+		<!--  tbody 태그 : 표 몸체부를 표현하기 위한 태그 -->
+		<tbody>
+			<tr>
+			<!-- rowspan 속성 : 병합하고자 하는 행의 갯수를 속성값으로 설정 
+				행의 갯수가 합쳐져서 하나로 나온다. -->
+				<td rowspan="3">요안도라</td><td>유채방</td><td>4인실
+				</td><td rowspan="2">1인 20,000</td>
+			</tr>
+			<tr>
+				<td>동백방</td><td>2인실</td>
+			</tr>
+			<tr>
+				<td>천혜향</td><td colspan="2">가족실 60,000원(최대4인)</td>
+			</tr>
+		</tbody>	
+		<!-- tfoot태그 : 표의 꼬릿부를 표현하기 위한 태그 -->
+		<tfoot>
+			<tr>
+				<td colspan="4">바깥채 전체를 독채로 대여합니다.</td> <!-- 열 4개가 하나의 열로 합쳐짐 -->
+			</tr>
+		</tfoot>
+		</table>	
+</body>
+</html>

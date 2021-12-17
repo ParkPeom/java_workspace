@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>form 태그</h1>
+	<hr>
+	<!-- form 태그 : 사용자로 부터 값을 입력 받아 웹프로그램을 요청하여 입력값을 전달 -->
+	<!-- => 하위 태그로 입력태그와 요청 이벤트(Submit Event)를 제공하는 태그를 반드시 작성 -->
+	<!-- action 속성 : 요청 웹프로그램(Servlet 또는 JSP)의 URL 주소를 속성값으로 설정 -->
+	<!--  => action 속성을 생략한 경우 현재 브라우저 주소창에 URL 주소로 표현된 웹프로그램 재요청-->
+	<!-- method 속성 : GET(기본) 또는 POST 중 하나를 속성값으로 설정 - 요청 방식-->
+	<!-- => GET : 입력값을 URL 주소의 QueryString으로 전달 - 소용량의 보안이 필요없는 값-->
+	<!-- => POST : 입력값을 리퀘스트 메세지의 바디(body)에 저장하여 전달(값이 눈에 안보임) - 대용량 또는 보안이 필요한 값을 보낼때 -->
+	<!--  enctype 속성 : 입력값을 전달하는 방식을 속성값으로 설정  -->
+	<!-- =>[application/x-www-form-urlencoded] : 입력값을 인코딩 처리된 문자 데이타(2Byte)로 전달 -->
+	<!-- =>[multipart/form-data] 속성값 : 입력값을 원시데이타(1Byte)로 전달 - 파일을 입력받아 전달할때  -->
+	<!-- name 속성 : 태그의 이름을 속성값으로 설정 - JavaScript 에서 속성값을 객체로 표현 -->
+	<form action="19_action.html" method="post" name ="loginForm"></form> <!-- 상대경로 -->
+		<!-- 입력태그:input , select , textarea 등 - 1개 이상 -->
+		아이디 : <input type="text" name="id"><br>
+		비밀번호 : <input type="password" name="passwd"><br>
+		<!-- 요청 이벤트(Submit Event)를 제공하는 태그 : input 태그 , button 태그 등 - 1개만있어도됨 -->
+		<!-- button 태그의  type 속성값을 [submit]으로 설정하면 버튼을 클릭한 경우 Submit Event 발생 -->
+		<!--  => 요청 이벤트가 발생된 경우 from 태그가 동작되어 설정된 URL 주소의 웹 프로그램을 요청하여 입력값을 전달 -->
+		<!-- => 브라우저 주소창의 URL 주소는 요청 웹프로그램의 URL 주소로 변경  -->
+		<button type = "submit">로그인</button>				
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>map 태그</h1>
+	<hr>
+	<!-- 이럴떄 a태그 쓰찌않는다. -->
+	<a href="https://twitter.com"><img alt="이미지 링크" src="/web/html/images/map.png" ></a>
+	
+	<!-- 하나의 이미지에서 영역을 구분해서 트위터 , 페이스북 사이트 가기 -->
+	<!-- map 태그 : 이미지 영역에 대한 하이퍼링크 기능을 제공 - 하위태그 : area -->
+	<!-- name 속성 : 태그의 이름을 속성값으로 설정 , 중복되도상관없는데 중복되는걸 권장안함 -->
+	
+	<!-- usemap 속성 : map 태그의 이름을 속성값으로 설정 -->
+	<img alt="이미지 링크" src="/web/html/images/map.png" usemap="#favorites" ></a>
+	
+	<map name="favorites">
+		<!-- area 태그 : 이미지 영역의 범위를 설정 -->
+		<!-- shpae 속성 : 영역을 설정하기 위한 도형을 속성값을 설정-->
+		<!-- =>속성값 : rect(기본), circle, poly 타원  -->
+		<!-- coords 속성 : 영역에 대한 좌표값을 속성값으로 설정 -->
+		<!-- 윈쪽위 0,0 이고 오른쪽이 128,116 사각형 모양으로 생김 -->
+		<area alt="트위터" shape="rect" coords="0,0,128,116" href="https://twitter.com" target ="_blank">
+		<area alt="페이스북" shape="rect" coords="117,0,250,116" href="https://facebook.com" target ="_blank">
+	</map>
+	
+</body>
+</html>

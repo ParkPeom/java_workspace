@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+</head>
+<body>
+	<h1>input 태그</h1>
+	<hr>
+	<!-- input 태그 : 사용자로부터 값을 입력받기 위한 입력태그 -->
+	<!-- type 속성 : 입력값의 형식에 대한 속성값을 설정-->
+	<!-- name 속성 : 태그에 이름을 속성값으로 설정 - 속성값을 JavaScript에서 객체명으로 표현 -->
+	<!-- => 웹프로그램에 전달값에 대한 식별자로 사용 -->
+	<!-- value 속성 : 입력태그의 초기값을 속성값으로 설정 -->
+	<!-- => size 속성 : 입력태그의 크기를 속성값으로 설정[네모칸크기] -->
+	<!-- maxlength 속성 : 입력태그의 입력 가능한 최대 문자 갯수를 속성값으로 설정 -->
+	<!-- autofocus 속성(HTML5) : 입력 태그의 입력촛점(포커스 - focus)을 위치 하도록 설정 속성값으로 생략 가능 -->
+	<!-- required 속성(HTML5) : 필수 입력값 설정 - 속성값 생략 가능 -->
+	<!-- => required 속성이 설정된 입력태그에 입력값이 없는 경우 웹 프로그램 요청 불가능 무조건 입력되야함--> 
+	<!-- => placeholder 속성 : 입력값에 대한 설명을 속성값으로 설정 -->
+	<!-- readonly 속성 : 입력태그을 읽기 전용으로 설정 -->
+	<!-- radio : name 속성값이 같은 목록 중 하나만 선택하여 전달  -->
+	<!-- checked 속성 : 우선 선택 설정 (radio,checkbox)- 속성값 생략 가능  -->
+	
+	<!-- type 속성값(입력값의 형식 관련 속성값) -->
+	<!-- => hidden : 사용자에게 값을 입력받지 않고 원하는 값을 전달 -->
+	<!-- => text : 사용자에게 문자열을 입력받아 전달 -->
+	<!-- => password : 사용자에게 문자열을 입력받아 전달 - 입력값을 특정 문자로 변환 -->
+	<!-- => radio : name 속성값이 같은 목록 중 하나만 선택하여 전달  -->
+	<!--  checkbox : name 속성값이 같은 목록 중 0개 이상을 선택하여 전달  -->
+	<!-- => file : 파일을 입력받아 전달 --> 
+		<form action="#" method="post" name="form">
+		<input type="hidden" name="num" value="1000"> <!--사용자로부터 입력받지않고 num이라는 이름으로 1000 전달 -->
+		<p>아이디 : <input type= "text" name = "id" size="10" 
+		maxlength="20" autofocus="autofocus" required="required"></p>
+		<p>비밀번호 : <input type="password" name="passwd" placeholder="비밀번호를 입력해 주세요."></p>
+		<p>이름 : <input type="text" name="name" value="홍길동" readonly="readonly"></p>
+		<p>성별 : <input type="radio" name="gender" value="M" checked="checked">남자&nbsp;&nbsp;
+			     <input type="radio" name="gender" value="W" checked="checked">여자&nbsp;&nbsp;
+		<p>취미 : <input type="checkbox" name="hobby" value="등산"> 등산&nbsp;
+				 <input type="checkbox" name="hobby" value="낚시"> 낚시&nbsp;
+				 <input type="checkbox" name="hobby" value="게임"> 게임&nbsp;
+				 <input type="checkbox" name="hobby" value="독서"> 독서&nbsp;
+		<p>사진 : <input type="file" name ="profile"></p> 
+	</form>
+</body>
+</html>
