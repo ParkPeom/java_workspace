@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>ITwill 홈페이지에 오신걸 환영합니다.</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+ 
+  <style>
+    body{
+      margin: 0;
+    }
+
+    .nav{
+      height: 70px;
+      border-bottom: 1px slid black;
+      display: flex;
+      align-items:center;
+    }
+    .nav-right-items {
+      display: flex;
+      margin-left: auto;
+    }
+
+    .nav-item {
+      margin-left: 10px;
+    }
+
+    .company-name {
+      margin-left: 20px;
+    }
+
+    .title {  
+      font-size:60px;
+      font-weight: bold;
+      alitn-items:center;
+    }
+
+    .subtitle {
+      text-align: center;
+      fotn-size: 1.25rem;
+      font-weight: 300;
+    }
+
+    .main {
+      width: 1000px;
+      margin: 0 auto;
+      margin-top: 60px;
+    }
+    .prices {
+      display: flex;
+    }
+
+    .price-item {
+      width: 300px;
+      height: 300px;
+      border: 1px solid black;
+      margin: 20px;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .price-item-price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      padding: 20px;
+    }
+
+    .price-item-title {
+        font-size: 1.5rem;
+        background: rgba(0,0,0,.03);
+        height: 53px;
+        line-height: 53px;
+        border-bottom: 1px solid black;
+    }
+
+    .price-item-detail {
+      font-size : 1.0rem;
+    }
+
+    .price-item {
+      font-size: 2.5rem;
+      font-weight: bold;
+      padding: 20px;
+    }
+
+    .price-item-button {
+        padding: .5rem 1rem;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        border-radius: .3rem;
+        color: #007bff;
+        background-color: transparent;
+        background-image: none;
+        border-color: #007bff;
+        margin-top: 30px;
+    }
+
+    .price-item-button--active {
+      background-color: #007bff;
+      color: white;
+    }
+
+  </style>
+  </head>
+  <body>
+    <div class="nav">
+     <div class="company-name ">
+      아이티윌
+    </div>
+      <div class="nav-right-items">
+      <div class="nav-item">교육과정</div>
+      <div class="nav-item">취업센터</div>
+      <div class="nav-item">커뮤니티</div>
+      <div class="nav-item">위탁/출강교육</div>
+      </div>
+    </div>
+      <div class="main">
+        <div class="title">
+        ITwill
+      </div>    
+      <div class="subtitle">
+       우수 훈련기관 아이티윌에 오신걸 환영합니다
+      </div>
+      <div class="prices">
+        <div class="price-item">
+          <div class="price-item-title">           
+          공지 사항
+        </div>
+        <div class="price-item-price">
+          $0 / mo
+        </div>
+        <div class="price-item-detail">
+          10 users included
+          </div>
+                <div class="price-item-detail">
+          2 GB of storage
+          </div>
+                <div class="price-item-detail">
+          Email support
+          </div>
+                <div class="price-item-detail">
+          Help center access
+          </div>
+        <button class="price-item-button">
+          Click me
+        </button>  
+        </div>    
+
+   <div class="prices">
+       <div class="price-item">
+            <div class="price-item-title">           
+              국비 과정
+            </div>
+            <div class="price-item-price">
+              $0 / mo
+            </div>
+            <div class="price-item-detail">
+              10 users included
+              </div>
+                    <div class="price-item-detail">
+              2 GB of storage
+              </div>
+                    <div class="price-item-detail">
+              Email support
+              </div>
+                    <div class="price-item-detail">
+              Help center access
+              </div>
+            <button class="price-item-button">
+              Click me
+            </button>  
+       </div>
+      </div>
+      <div class="price-item">
+        <div class="price-item-title">           
+                수강 신청
+              </div>
+              <div class="price-item-price">
+                $0/<span class="price-item-month">/ mo</span>
+              </div>
+              <div class="price-item-detail">
+                10 users included
+                </div>
+                      <div class="price-item-detail">
+                2 GB of storage
+                </div>
+                      <div class="price-item-detail">
+                Email support
+                </div>
+                      <div class="price-item-detail">
+                Help center access
+                </div>
+              <button class="price-item-button price-item-button--active">
+                Click me
+              </button>  
+        </div>  
+      </div>
+    </div>
+    <script src="script.js"></script>
+
+  </body>
+</html>
