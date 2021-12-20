@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<!-- link 태그는 외부파일을 불러와 내용을 연결하는 기능 제공 -->
+<!--  => CSS 파일을 불러와 웹문서에 CSS 스타일 적용  -->
+<!-- href 속성 : 불러올 외부파일의 URL 주소를 속성값으로 설정  -->
+<!--  tpye 속성 : 불러올 파일 형식(MimeType)을 속성값으로 설정 -->
+<!--  rel 속성 : 파일 연결 관계를 속성값으로 설정 - CSS 파일 속성값 : stylesheet -->
+<!--  모든 웹문서에 동일한 스타일 적용하기 위해 사용 - 웹 사이트에 일관성 있는 스타일 적용 -->
+<link href="04_style.css" type="text/css" rel="stylesheet"> <!-- 상대경로 -->
+<!--  style 태그를 사용하면 현재 웹문서에 CSS 스타일 적용 -->
+<!--  => 선택자로 선택된 모든 엘리먼트에 동일한 스타일 적용 -->
+<style type="text/css">
+h2 {
+	color : skyblue;
+}
+h3 {
+	color: blue;
+}
+h4 {
+	color : aqua;
+}
+</style>
+
+</head>
+<body>
+	<h1>CSS 스타일 적용 방법</h1>
+	<hr>
+	<h2>브라우저에 출력될 아주 중요한 내용입니다.</h2>
+	<h3>브라우저에 출력될 아주 중요한 내용입니다.</h3>
+	<!-- 태그의 style 속성을 사용하여 CSS스타일 적용(하나의 엘리먼트만 적용하고 싶을때) -->
+	<h4 style="color: maroon;">브라우저에 출력될 아주 중요한 내용입니다.</h4>
+</body>
+</html>
