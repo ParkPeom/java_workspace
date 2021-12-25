@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class InventoryMain {
 	Scanner sc = new Scanner(System.in);
+	
 	static ArrayList<ProductVO> arr = new ArrayList<ProductVO>();
 	public InventoryMain() {
 		start();
