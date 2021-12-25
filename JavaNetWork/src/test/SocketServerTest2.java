@@ -3,6 +3,7 @@ package test;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -21,8 +22,14 @@ public class SocketServerTest2 {
 			Socket s = socket.accept();
 			InetAddress ia = s.getInetAddress(); // 접속 컴퓨터 ip들 계속 가져옴
 			System.out.println( ia.getHostAddress() + "-->클라이언트가 접속 하였습니다.");
-			
 			BufferedWriter br = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+			br.write("안녕 나 서버야...\n");
+			br.flush();
+			br.close();
+			
+			BufferedReader br2 = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			String sendData = br2.readLine();
+			System.out.println("서버로부터 받은 문자 -----> " + sendData);
 		}
 			
 		} catch (IOException e) {

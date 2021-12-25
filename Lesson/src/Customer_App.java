@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -124,6 +125,7 @@ public class Customer_App {
 		
 		JTextArea note = new JTextArea();
 		note.setBounds(817, 342, 226, 185);
+		note.setBorder(BorderFactory.createLineBorder(Color.black));// 테두리 설정 검은색 테두리
 		mainPanel.add(note);
 		
 		JButton btnNewButton = new JButton("Submit");
@@ -137,7 +139,7 @@ public class Customer_App {
 				String noteTxt = note.getText();// textArea 적은 값 불러오기 
 
 				// 값을 넣어줌 데이터베이스 넣어주는 메서드 
-				Customer customer = new Customer(nameTxt,ageTxt);
+//				Customer customer = new Customer(nameTxt,ageTxt);
 			}
 		});
 		btnNewButton.setBounds(531, 459, 204, 68);
@@ -176,27 +178,27 @@ public class Customer_App {
 		// 로그인 버튼
 		btnLogin.setPressedIcon(new ImageIcon("C:\\Users\\fight\\Desktop\\Tree\\\uC790\uBC14\\eclipse-workspace\\Lesson\\image\\button.jpg")); // 버튼을 눌렀을때 이미지 
 		btnLogin.setBounds(1188, 466, 334, 43);
-
-		welcomePanel.add(btnLogin);
 		
-		frame.setSize(welcomePanel.getWidth(),welcomePanel.getHeight()); // 이미지의 크기만큼 프레임크기를 설정함 
+				welcomePanel.add(btnLogin);
+				
+				frame.setSize(welcomePanel.getWidth(),welcomePanel.getHeight()); // 이미지의 크기만큼 프레임크기를 설정함 
+				
+					btnLogin.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) { // 로그인 버튼을 눌렀을때
+							if(id.getText().equals("Danny") && Arrays.equals(password.getPassword(), "hello".toCharArray())) {
+								welcomePanel.setVisible(false); 
+								// 메인패널 나오게 하기
+								mainPanel.setVisible(true);
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "로그인에 실패");
+							}
+						}});
 		
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
-		btnLogin.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) { // 로그인 버튼을 눌렀을때
-				if(id.getText().equals("Danny") && Arrays.equals(password.getPassword(), "hello".toCharArray())) {
-					welcomePanel.setVisible(false); 
-					// 메인패널 나오게 하기
-					mainPanel.setVisible(true);
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "로그인에 실패");
-				}
-			}});
 		
 		frame.setJMenuBar(menuBar()); // 위에 메뉴바를 불러옴 
 	}

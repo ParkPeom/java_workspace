@@ -91,7 +91,6 @@ public class ScoreFrame extends JFrame implements ActionListener , MouseListener
 	    
 	    // 테이블 수정 못하게 DefaultTableModel 사용
 	    
-	    
 	    DefaultTableModel model = new DefaultTableModel(scoreDAO.getScore(), col) {
 	        public boolean isCellEditable(int row, int column) {
 	          return false;

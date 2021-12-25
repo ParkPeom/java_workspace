@@ -75,9 +75,9 @@ public class StudentGUIApp2 extends JFrame implements ActionListener {
 
 		left.add(pno);
 		left.add(pname);
+		left.add(pbirthday);
 		left.add(pphone);
 		left.add(paddress);
-		left.add(pbirthday);
 		
 		JPanel bottom = new JPanel();
 		bottom.setLayout(new GridLayout(1, 5));
@@ -221,7 +221,7 @@ public class StudentGUIApp2 extends JFrame implements ActionListener {
 	}
 
 	public static void main(String args[]) throws Exception {
-		new StudentGUIApp();
+		new StudentGUIApp2();
 	}
 	
 	//이벤트 처리 메소드 - JButton 컴퍼넌트를 누른 경우 자동 호출되는 메소드
@@ -281,8 +281,8 @@ public class StudentGUIApp2 extends JFrame implements ActionListener {
 			return;
 		}
 		
-		//JTable.getModel() : JTable 컴퍼넌트에 종속된 TableModel 인스턴스를 반환하는 메소드
-		//DefaultTableModel : TableModel 인터페이스를 상속받아 작성된 클래스 
+		// JTable.getModel() : JTable 컴퍼넌트에 종속된 TableModel 인스턴스를 반환하는 메소드
+		// DefaultTableModel : TableModel 인터페이스를 상속받아 작성된 클래스 
 		// => JTable 컴퍼넌트의 행정보를 제어하는 인스턴스
 		// => TableModel 인스턴스를 DefaultTableModel 클래스로 객체 형변환 하여 저장
 		DefaultTableModel model=(DefaultTableModel)table.getModel();

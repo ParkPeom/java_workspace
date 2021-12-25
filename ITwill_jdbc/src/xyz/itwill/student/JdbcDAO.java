@@ -15,7 +15,6 @@ import oracle.ucp.jdbc.PoolDataSourceFactory;
 public abstract class JdbcDAO {
 	
 	private static PoolDataSource _pds;
-	
 	static { // PoolDataSource 인스턴스를 생성하여 시스템 필드에 저장 - DBCP
 		_pds = PoolDataSourceFactory.getPoolDataSource();
 					// PoolDataSourceFactory 인스턴스를 만들어주는 공장같은 클래스

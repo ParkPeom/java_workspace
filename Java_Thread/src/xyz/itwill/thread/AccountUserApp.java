@@ -7,6 +7,7 @@ public class AccountUserApp {
 		System.out.println("====================================");		
 		AccountUser[] users = new AccountUser[3];
 		// 배열에 넣음 
+		// 우선순위를 안해주면 모두 우선순위가 5다 
 		users[0] = new AccountUser(account,"홍길동");
 		users[1] = new AccountUser(account,"임꺽정");
 		users[2] = new AccountUser(account,"전우치");

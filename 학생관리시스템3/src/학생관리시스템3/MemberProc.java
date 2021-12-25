@@ -33,8 +33,7 @@ public class MemberProc extends JFrame implements ActionListener {
     JTextField tfYear, tfMonth, tfDate; //생년월일
     JRadioButton rbMan, rbWoman; //남, 여
     JTextArea taIntro;
-    JButton btnInsert, btnCancel, btnUpdate,btnDelete; //가입, 취소, 수정 , 탈퇴 버튼
-   
+    JButton btnInsert, btnCancel, btnUpdate,btnDelete; //가입, 취소, 수정 , 탈퇴 버튼 
     GridBagLayout gb;
     GridBagConstraints gbc;
     Member_List mList ;
@@ -42,11 +41,12 @@ public class MemberProc extends JFrame implements ActionListener {
     public MemberProc(){ //가입용 생성자
        
         createUI(); // UI작성해주는 메소드
+        // setEnabled - 비활성화 처리함 
         btnUpdate.setEnabled(false);
         btnUpdate.setVisible(false);
+        
         btnDelete.setEnabled(false);
         btnDelete.setVisible(false);
-       
        
     }//생성자
    
@@ -55,6 +55,7 @@ public class MemberProc extends JFrame implements ActionListener {
         createUI(); // UI작성해주는 메소드
         btnUpdate.setEnabled(false);
         btnUpdate.setVisible(false);
+        
         btnDelete.setEnabled(false);
         btnDelete.setVisible(false);
         this.mList = mList;
@@ -67,13 +68,13 @@ public class MemberProc extends JFrame implements ActionListener {
         this.mList = mList;      
        
         System.out.println("id="+id);
-       
         MemberDAO dao = new MemberDAO();
         MemberDTO vMem = dao.getMemberDTO(id);
         viewData(vMem);
        
-    }//id를 가지고 생성     
-    //MemberDTO 의 회원 정보를 가지고 화면에 셋팅해주는 메소드
+    }
+     // id를 가지고 생성     
+     // MemberDTO 의 회원 정보를 가지고 화면에 셋팅해주는 메소드
     private void viewData(MemberDTO vMem){
        
         String id = vMem.getId();
@@ -324,21 +325,16 @@ public class MemberProc extends JFrame implements ActionListener {
         boolean ok = dao.insertMember(dto);
        
         if(ok){
-           
             JOptionPane.showMessageDialog(this, "가입이 완료되었습니다.");
             dispose();
-           
         }else{
            
             JOptionPane.showMessageDialog(this, "가입이 정상적으로 처리되지 않았습니다.");
         }
-       
-       
-       
-    }//insertMember
+        
+    } //insertMember
    
     public MemberDTO getViewData(){
-       
         //화면에서 사용자가 입력한 내용을 얻는다.
         MemberDTO dto = new MemberDTO();
         String id = tfId.getText();
@@ -376,8 +372,6 @@ public class MemberProc extends JFrame implements ActionListener {
         dto.setGender(gender);
         dto.setEmail(email);
         dto.setIntro(intro);
-       
         return dto;
     }
-   
 }//end

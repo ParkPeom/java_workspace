@@ -5,11 +5,9 @@ import java.util.List;
 import choice.Choice;
 import dto.JoinDTO;
 import print.Print;
-
 public class StartApp {
 	public StartApp() {
-		
-	while(true) {
+	while(true) {	
 		Print.firstprintmenu();
 		int choice = Print.setIntMessage("선택 하세요");
 		Choice.joinchoicemenu(choice);

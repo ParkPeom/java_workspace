@@ -10,16 +10,14 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 public class MemberDAO {
-	
 	private static final String DRIVER ="oracle.jdbc.driver.OracleDriver";	
-	private static final String URL ="jdbc:oracle:thin:@10.10.6.39:orcl";
+	private static final String URL ="jdbc:oracle:thin:@1522:orcl";
 	private static final String USER ="scott";
 	private static final String PASS ="tiger";
 	
 	Member_List mList;
 	public MemberDAO() {
 	}
-	
 	public MemberDAO(Member_List mList) {
 		this.mList = mList;
 		System.out.println("DAO=>"+mList);
@@ -27,6 +25,7 @@ public class MemberDAO {
 	/*DB연결 메소드*/
 	public Connection getConn() {
 		Connection con = null;
+		
 		try {
 		Class.forName(DRIVER); //드라이버 로딩
 			con = DriverManager.getConnection(URL, USER, PASS); // 2. 드라이버 연결
@@ -110,7 +109,6 @@ public class MemberDAO {
 	
 	/*회원 등록*/
 	public boolean insertMember(MemberDTO dto) {
-		
 		boolean ok = false;
 		Connection con = null; // 연결
 		PreparedStatement pstmt = null; // 명령

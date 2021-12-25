@@ -1,4 +1,4 @@
-package ÇĞ»ı°ü¸®½Ã½ºÅÛ2;
+package í•™ìƒê´€ë¦¬ì‹œìŠ¤í…œ2;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -22,104 +22,101 @@ import javax.swing.table.DefaultTableModel;
 
 public class StudentGUIApp extends JFrame implements ActionListener {
 	
-	
 	private static final long serialVersionUID = 1L;
-
-	public static final int NONE = 0;   // ÃÊ±âÈ­
-	public static final int ADD = 1;    // Ãß°¡
-	public static final int DELETE = 2; // Ãß°¡
-	public static final int UPDATE = 3; // Ãß°¡
-	public static final int UPDATE_CHANGE = 4; // Ãß°¡
-	public static final int SEARCH = 5; // Ãß°¡
+	public static final int NONE = 0;   // ì´ˆê¸°í™”
+	public static final int ADD = 1;    // ì¶”ê°€
+	public static final int DELETE = 2; // ì¶”ê°€
+	public static final int UPDATE = 3; // ì¶”ê°€
+	public static final int UPDATE_CHANGE = 4; // ì¶”ê°€
+	public static final int SEARCH = 5; // ì¶”ê°€
 	
-	JTextField noTF ,nameTF, phoneTF, addressTF, birthdayTF; // ÅØ½ºÆ® ÇÊµå 
-	JButton addB , deleteB , updateB , searchB , cancelB; // ¹öÆ°
+	JTextField noTF ,nameTF, phoneTF, addressTF, birthdayTF; // í…ìŠ¤íŠ¸ í•„ë“œ 
+	JButton addB , deleteB , updateB , searchB , cancelB; // ë²„íŠ¼
 	
-	JTable table; // µ¥ÀÌÅÍ¸¦ º¸¿©ÁÖ±â À§ÇÑ Å×ÀÌºí 
+	JTable table; // ë°ì´í„°ë¥¼ ë³´ì—¬ì£¼ê¸° ìœ„í•œ í…Œì´ë¸” 
 	
-	int cmd; // ÇöÀç »óÅÂ 
+	int cmd; // í˜„ì¬ ìƒíƒœ 
 
 	public StudentGUIApp() {
-		setTitle("¡Ú¡Ú¡Ú ÇĞ»ı °ü¸® ÇÁ·Î±×·¥ ¡Ú¡Ú¡Ú");
-		setSize(800,400); // °¡·Î ¼¼·Î ? 
+		setTitle("â˜…â˜…â˜… í•™ìƒ ê´€ë¦¬ í”„ë¡œê·¸ë¨ â˜…â˜…â˜…");
+		setSize(800,400); // ê°€ë¡œ ì„¸ë¡œ ? 
 		
 		Dimension dim = getToolkit().getScreenSize();
 		setLocation(dim.width / 2 - getWidth() / 2, dim.height / 2
 				- getHeight() / 2);
 	
-		JPanel left = new JPanel(); // ¿ŞÂÊ
+		JPanel left = new JPanel(); // ì™¼ìª½
 		
-		left.setLayout(new GridLayout(5,1)); // 5Çà 1¿­ 
+		left.setLayout(new GridLayout(5,1)); // 5í–‰ 1ì—´ 
 		
 		JPanel pno = new JPanel();
-		pno.add(new JLabel("¹ø  È£"));
+		pno.add(new JLabel("ë²ˆ  í˜¸"));
 		pno.add(noTF = new JTextField(10));
 		
 		JPanel pname = new JPanel();
-		pname.add(new JLabel("ÀÌ ¸§"));
+		pname.add(new JLabel("ì´ ë¦„"));
 		pname.add(nameTF = new JTextField(10));
 		
 		JPanel pbirthday = new JPanel();
-		pbirthday.add(new JLabel("»ı ÀÏ"));
+		pbirthday.add(new JLabel("ìƒ ì¼"));
 		pbirthday.add(birthdayTF = new JTextField(10));
 		
 		JPanel pphone = new JPanel();
-		pphone.add(new JLabel("Àü  È­"));
+		pphone.add(new JLabel("ì „  í™”"));
 		pphone.add(phoneTF = new JTextField(10)); 
 		
 		JPanel paddress = new JPanel();
-		paddress.add(new JLabel("ÁÖ  ¼Ò"));
+		paddress.add(new JLabel("ì£¼  ì†Œ"));
 		paddress.add(addressTF = new JTextField(10)); 
 		
-		// °¢°¢ Ãß°¡ÇÑ 5°³ ÆĞ³ÎÀ»  Çà¿­ GridLayout(5,1) Æ²¿¡ Ãß°¡
+		// ê°ê° ì¶”ê°€í•œ 5ê°œ íŒ¨ë„ì„  í–‰ì—´ GridLayout(5,1) í‹€ì— ì¶”ê°€
 		left.add(pno);
 		left.add(pname);
 		left.add(pphone);
 		left.add(paddress);
 		left.add(pbirthday);
 		
-		JPanel bottom = new JPanel(); // ¾Æ·¡ 
-		bottom.setLayout(new GridLayout(1,5)); // 1Çà 5¿­ 
+		JPanel bottom = new JPanel(); // ì•„ë˜ 
+		bottom.setLayout(new GridLayout(1,5)); // 1í–‰ 5ì—´ 
 		
-		bottom.add(addB = new JButton("Ãß °¡"));	
-		addB.addActionListener(this); // ¹öÆ° B¸¦ ´­·¶À»¶§ ¾×¼Ç ÀÌº¥Æ® 
+		bottom.add(addB = new JButton("ì¶” ê°€"));	
+		addB.addActionListener(this); // ë²„íŠ¼ Bë¥¼ ëˆŒë €ì„ë•Œ ì•¡ì…˜ ì´ë²¤íŠ¸ 
 		
-		bottom.add(deleteB = new JButton("»è Á¦"));	
-		deleteB.addActionListener(this); // ¹öÆ° B¸¦ ´­·¶À»¶§ ¾×¼Ç ÀÌº¥Æ® 
+		bottom.add(deleteB = new JButton("ì‚­ ì œ"));	
+		deleteB.addActionListener(this); // ë²„íŠ¼ Bë¥¼ ëˆŒë €ì„ë•Œ ì•¡ì…˜ ì´ë²¤íŠ¸ 
 	
-		bottom.add(updateB = new JButton("º¯ °æ"));	
-		updateB.addActionListener(this); // ¹öÆ° B¸¦ ´­·¶À»¶§ ¾×¼Ç ÀÌº¥Æ® 
+		bottom.add(updateB = new JButton("ë³€ ê²½"));	
+		updateB.addActionListener(this); // ë²„íŠ¼ Bë¥¼ ëˆŒë €ì„ë•Œ ì•¡ì…˜ ì´ë²¤íŠ¸ 
 	
-		bottom.add(searchB = new JButton("°Ë »ö"));	
-		searchB.addActionListener(this); // ¹öÆ° B¸¦ ´­·¶À»¶§ ¾×¼Ç ÀÌº¥Æ® 
+		bottom.add(searchB = new JButton("ê²€ ìƒ‰"));	
+		searchB.addActionListener(this); // ë²„íŠ¼ Bë¥¼ ëˆŒë €ì„ë•Œ ì•¡ì…˜ ì´ë²¤íŠ¸ 
 		
-		bottom.add(cancelB = new JButton("ÃÊ±âÈ­"));
+		bottom.add(cancelB = new JButton("ì´ˆê¸°í™”"));
 		cancelB.addActionListener(this);
 		
-		Object[] title = {"ÇĞ¹ø","ÀÌ¸§","ÀüÈ­¹øÈ£","ÁÖ¼Ò","»ı³â¿ùÀÏ"}; // ÄÃ·³¸í 
-		table = new JTable(new DefaultTableModel(title,0)); // ÄÃ·³¸í , 0
+		Object[] title = {"í•™ë²ˆ","ì´ë¦„","ì „í™”ë²ˆí˜¸","ì£¼ì†Œ","ìƒë…„ì›”ì¼"}; // ì»¬ëŸ¼ëª… 
+		table = new JTable(new DefaultTableModel(title,0)); // ì»¬ëŸ¼ëª… , 0
 		table.setEnabled(false);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.getTableHeader().setResizingAllowed(false);
 		
 		JScrollPane sp = new JScrollPane(table);
 			
-		// JFrame¿¡
-		add(sp,	"Center"); // Å×ÀÌºíÀº °¡¿î´ë ¹èÄ¡  
-		add(left,"West"); // ¼­ÂÊ ¹èÄ¡ 
-		add(bottom, "South"); // ³²ÂÊ ¹èÄ¡ 
-		cmd = NONE; // ÃÊ±âÈ­ 
+		// JFrameì—
+		add(sp,	"Center"); // í…Œì´ë¸”ì€ ê°€ìš´ëŒ€ ë°°ì¹˜  
+		add(left,"West"); // ì„œìª½ ë°°ì¹˜ 
+		add(bottom, "South"); // ë‚¨ìª½ ë°°ì¹˜ 
+		cmd = NONE; // ì´ˆê¸°í™” 
 		initialize();
 		
-		// //JTable ÄÄÆÛ³ÍÆ®¿¡ ¸ğµç ÇĞ»ıÁ¤º¸¸¦ °Ë»öÇÏ¿© Ãâ·ÂÇÏ´Â ¸Ş¼Òµå È£Ãâ
-	
+		// //JTable ì»´í¼ë„ŒíŠ¸ì— ëª¨ë“  í•™ìƒì •ë³´ë¥¼ ê²€ìƒ‰í•˜ì—¬ ì¶œë ¥í•˜ëŠ” ë©”ì†Œë“œ í˜¸ì¶œ
 		displayAllStudent();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 	
 	public void initialize() {
-		// ÃÊ±âÈ­ ´©¸£¸é ÅØ½ºÆ®ÇÊµå ³»¿ë ¾Èº¸ÀÌ±â 
+		// ì´ˆê¸°í™” ëˆ„ë¥´ë©´ í…ìŠ¤íŠ¸í•„ë“œ ë‚´ìš© ì•ˆë³´ì´ê¸° 
 		noTF.setEditable(false);
 		nameTF.setEditable(false);
 		phoneTF.setEditable(false);
@@ -127,10 +124,10 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		birthdayTF.setEditable(false);
 	}
 	
-	// ÅØ½ºÆ® ÇÊµå È°¼ºÈ­ , ºñÈ°¼ºÈ­  
+	// í…ìŠ¤íŠ¸ í•„ë“œ í™œì„±í™” , ë¹„í™œì„±í™”  
 	public void setEdiatable(int n) {
 		switch(n) {
-		case ADD: // Ãß°¡ ¹öÆ° ´©¸£¸é
+		case ADD: // ì¶”ê°€ ë²„íŠ¼ ëˆ„ë¥´ë©´
 			noTF.setEditable(true);
 			nameTF.setEditable(true);
 			phoneTF.setEditable(true);
@@ -138,23 +135,22 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			birthdayTF.setEditable(true);
 			break;
 		
-		case DELETE: // »èÁ¦ ¹öÆ° ÇÑ¹ø ´©¸£¸é 
+		case DELETE: // ì‚­ì œ ë²„íŠ¼ í•œë²ˆ ëˆ„ë¥´ë©´ 
 			noTF.setEditable(true);
 			break;
 		
-		case UPDATE: // º¯°æ ¹öÆ° ÇÑ¹ø ´©¸£¸é 
+		case UPDATE: // ë³€ê²½ ë²„íŠ¼ í•œë²ˆ ëˆ„ë¥´ë©´ 
 			noTF.setEditable(true);
 			break;
 		
-		case UPDATE_CHANGE: // º¯°æ ¹öÆ°À» ÇÑ¹ø ´õ ´©¸£¸é 
+		case UPDATE_CHANGE: // ë³€ê²½ ë²„íŠ¼ì„ í•œë²ˆ ë” ëˆ„ë¥´ë©´ 
 			noTF.setEditable(false);
 			nameTF.setEditable(true);
 			phoneTF.setEditable(true);
 			addressTF.setEditable(true);
 			birthdayTF.setEditable(true);
 			break ;
-			
-		case SEARCH: // Ã£±â ¹öÆ° 
+		case SEARCH: // ì°¾ê¸° ë²„íŠ¼ 
 			nameTF.setEditable(true);
 			break;
 		case NONE:
@@ -166,22 +162,22 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		}
 	}
 	
-	// ¹öÆ° ºñÈ°¼ºÈ­ , È°¼ºÈ£ 
+	// ë²„íŠ¼ ë¹„í™œì„±í™” , í™œì„±í˜¸ 
 	public void setEnable(int n) {
 		
-		addB.setEnabled(false);    // Ãß°¡ ¹öÆ° 
-		deleteB.setEnabled(false); // »èÁ¦ ¹öÆ°
-		updateB.setEnabled(false); // º¯°æ ¹öÆ°
-		searchB.setEnabled(false); // °Ë»ö ¹öÆ° 
+		addB.setEnabled(false);    // ì¶”ê°€ ë²„íŠ¼ 
+		deleteB.setEnabled(false); // ì‚­ì œ ë²„íŠ¼
+		updateB.setEnabled(false); // ë³€ê²½ ë²„íŠ¼
+		searchB.setEnabled(false); // ê²€ìƒ‰ ë²„íŠ¼ 
 		
 		switch(n) {
 		
-		case ADD: // 1ÀÏ¶§  
-			addB.setEnabled(true); // Ãß°¡¹öÆ° È°¼ºÈ­ 
-			setEdiatable(ADD); // ÅØ½ºÆ®ÇÊµå 
-			cmd = ADD; // ÇöÀç »óÅÂ´Â Ãß°¡·Î
+		case ADD: // 1ì¼ë•Œ  
+			addB.setEnabled(true); // ì¶”ê°€ë²„íŠ¼ í™œì„±í™” 
+			setEdiatable(ADD); // í…ìŠ¤íŠ¸í•„ë“œ 
+			cmd = ADD; // í˜„ì¬ ìƒíƒœëŠ” ì¶”ê°€ë¡œ
 			break;
-		case DELETE: //2ÀÏ¶§
+		case DELETE: //2ì¼ë•Œ
 			deleteB.setEnabled(true);
 			setEdiatable(DELETE);
 			cmd = DELETE;
@@ -209,7 +205,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		}
 	}
 	
-	// ÃÊ±âÈ­ µÇ¸é ? JTextField ÄÄÆÛ³ÍÆ®ÀÇ ÀÔ·Â°ªÀ» ÃÊ±âÈ­ 
+	// ì´ˆê¸°í™” ë˜ë©´ ? JTextField ì»´í¼ë„ŒíŠ¸ì˜ ì…ë ¥ê°’ì„ ì´ˆê¸°í™” 
 	public void clear() {
 		noTF.setText("");
 		nameTF.setText("");
@@ -218,7 +214,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		birthdayTF.setText("");
 	}
 	
-	// ¸ğµç ÄÄÆÛ³ÍÆ®¸¦ ÃÊ±âÈ­ Ã³¸® ÇÏ´Â ¸Ş¼Òµå
+	// ëª¨ë“  ì»´í¼ë„ŒíŠ¸ë¥¼ ì´ˆê¸°í™” ì²˜ë¦¬ í•˜ëŠ” ë©”ì†Œë“œ
 	public void initDisplay() {
 		setEnable(NONE);
 		clear();
@@ -226,14 +222,13 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		initialize();
 	}
 	
-	// <-------- JButton ÄÄÆÛ³ÍÆ® ´©¸£¸é ÀÌº¥Æ® Ã³¸® --------->
+	// <-------- JButton ì»´í¼ë„ŒíŠ¸ ëˆ„ë¥´ë©´ ì´ë²¤íŠ¸ ì²˜ë¦¬ --------->
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Component c = (Component)e.getSource(); // Object ¹İÈ¯ÀÌ¹Ç·Î ÄÄÆÛ³ÍÆ®·Î Çüº¯È¯ 
-		
+		Component c = (Component)e.getSource(); // Object ë°˜í™˜ì´ë¯€ë¡œ ì»´í¼ë„ŒíŠ¸ë¡œ í˜•ë³€í™˜ 
 		try {
-			if(c == addB) { // ¹öÆ°ÀÌ addBÀÏ °æ¿ì 
-				if(cmd != ADD) { // ADD »óÅÂ°¡ ¾Æ´Ï¸é ? È°¼ºÈ­ ½ÃÅ´
+			if(c == addB) { // ë²„íŠ¼ì´ addBì¼ ê²½ìš° 
+				if(cmd != ADD) { // ADD ìƒíƒœê°€ ì•„ë‹ˆë©´ ? í™œì„±í™” ì‹œí‚´
 					setEnable(ADD);
 				} else {
 					addStudent();
@@ -248,130 +243,124 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 				if(cmd != UPDATE && cmd != UPDATE_CHANGE) {
 					setEnable(UPDATE);
 				} else if( cmd != UPDATE_CHANGE){
-					searchNoStudent(); // ¹øÈ£·Î ÀÏ´Ü ÀÖ´ÂÁö °Ë»ö 
+					searchNoStudent(); // ë²ˆí˜¸ë¡œ ì¼ë‹¨ ìˆëŠ”ì§€ ê²€ìƒ‰ 
 				} else {
-					modifyStudent(); // UPDATE_CHANGE ÀÌ¸é º¯°æ 
+					modifyStudent(); // UPDATE_CHANGE ì´ë©´ ë³€ê²½ 
 					displayAllStudent();
 					initDisplay();
 				}
 			} else if(c == cancelB) {
-				// ¸Ş¼­µå ½ÇÇà
+				// ë©”ì„œë“œ ì‹¤í–‰
 				displayAllStudent();
 				initDisplay();
 			} else if(c == searchB) {
 				if(cmd != SEARCH) {
 					setEnable(SEARCH);
 				} else {
-					searchNameStudent(); // ÀÌ¸§À¸·Î °Ë»öÇÑ´Ù.
+					searchNameStudent(); // ì´ë¦„ìœ¼ë¡œ ê²€ìƒ‰í•œë‹¤.
 				}
 			}
 		} catch(Exception ex) {
-			System.out.println("¿¹¿Ü ¹ß»ı : " + ex);
+			System.out.println("ì˜ˆì™¸ ë°œìƒ : " + ex);
 		}
 	}
 	
-	//----------------¹öÆ°À» ´©¸£¸é ¹ß»ıÇÏ´Â ¸Ş¼Òµå----------------
-	// µ¥ÀÌÅÍ°ªµéÀ» Å×ÀÌºí¿¡ ³Ö¾î¼­ ´Ù½Ã º¸¿©ÁØ´Ù.
+	//----------------ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ë°œìƒí•˜ëŠ” ë©”ì†Œë“œ----------------
+	// ë°ì´í„°ê°’ë“¤ì„ í…Œì´ë¸”ì— ë„£ì–´ì„œ ë‹¤ì‹œ ë³´ì—¬ì¤€ë‹¤.
 	public void displayAllStudent() {
 		
-		//±âÁ¸ JTable ÄÄÆÛ³ÍÆ®¿¡ Á¸ÀçÇÏ´Â ¸ğµç ÇàÀ» ÇÏ³ª¾¿ ¹İº¹ÀûÀ¸·Î Á¦°Å List<StudentDTO> studentList = StudentDAO.getDAO().selectAllStudent();
+		//ê¸°ì¡´ JTable ì»´í¼ë„ŒíŠ¸ì— ì¡´ì¬í•˜ëŠ” ëª¨ë“  í–‰ì„ í•˜ë‚˜ì”© ë°˜ë³µì ìœ¼ë¡œ ì œê±° List<StudentDTO> studentList = StudentDAO.getDAO().selectAllStudent();
 		List<StudentDTO> studentList = StudentDAO.getDAO().selectAllStudent();
-		if(studentList.isEmpty()) { // ºñ¾îÀÖÀ¸¸é true		
-			JOptionPane.showMessageDialog(this, "ÀúÀåµÈ ÇĞ»ıÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+		if(studentList.isEmpty()) { // ë¹„ì–´ìˆìœ¼ë©´ true		
+			JOptionPane.showMessageDialog(this, "ì €ì¥ëœ í•™ìƒì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			return;
 		}
-		//JTable.getModel() : JTable ÄÄÆÛ³ÍÆ®¿¡ Á¾¼ÓµÈ TableModel ÀÎ½ºÅÏ½º¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		//DefaultTableModel : TableModel ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹Ş¾Æ ÀÛ¼ºµÈ Å¬·¡½º 
-		// => JTable ÄÄÆÛ³ÍÆ®ÀÇ ÇàÁ¤º¸¸¦ Á¦¾îÇÏ´Â ÀÎ½ºÅÏ½º
-		// => TableModel ÀÎ½ºÅÏ½º¸¦ DefaultTableModel Å¬·¡½º·Î °´Ã¼ Çüº¯È¯ ÇÏ¿© ÀúÀå
+		//JTable.getModel() : JTable ì»´í¼ë„ŒíŠ¸ì— ì¢…ì†ëœ TableModel ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+		//DefaultTableModel : TableModel ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ì‘ì„±ëœ í´ë˜ìŠ¤ 
+		// => JTable ì»´í¼ë„ŒíŠ¸ì˜ í–‰ì •ë³´ë¥¼ ì œì–´í•˜ëŠ” ì¸ìŠ¤í„´ìŠ¤
+		// => TableModel ì¸ìŠ¤í„´ìŠ¤ë¥¼ DefaultTableModel í´ë˜ìŠ¤ë¡œ ê°ì²´ í˜•ë³€í™˜ í•˜ì—¬ ì €ì¥
 		DefaultTableModel model = (DefaultTableModel)table.getModel();
 		
-		//±âÁ¸ JTable ÄÄÆÛ³ÍÆ®¿¡ Á¸ÀçÇÏ´Â ¸ğµç ÇàÀ» ÇÏ³ª¾¿ ¹İº¹ÀûÀ¸·Î Á¦°Å - JTable ÄÄÆÛ³ÍÆ®ÀÇ ÃÊ±âÈ­d	
+		//ê¸°ì¡´ JTable ì»´í¼ë„ŒíŠ¸ì— ì¡´ì¬í•˜ëŠ” ëª¨ë“  í–‰ì„ í•˜ë‚˜ì”© ë°˜ë³µì ìœ¼ë¡œ ì œê±° - JTable ì»´í¼ë„ŒíŠ¸ì˜ ì´ˆê¸°í™”d	
 		for(int i=model.getRowCount(); i>0; i--) {
-			model.removeRow(0); // Ã¹¹øÂ° Çà Á¦°Å 
+			model.removeRow(0); // ì²«ë²ˆì§¸ í–‰ ì œê±° 
 		}
 		
-		//JTable ÄÄÆÛ³ÍÆ®¿¡ °Ë»öµÈ ÇĞ»ıÁ¤º¸¸¦ ÀúÀåÇÏ¿© Ãâ·Â 
-		// => DefaultTableModel ÄÄÆÛ³ÍÆ®¿¡ °Ë»öµÈ ÇĞ»ıÁ¤º¸¸¦ ¹İº¹ÀûÀ¸·Î ÇàÀ¸·Î Ãß°¡
+		//JTable ì»´í¼ë„ŒíŠ¸ì— ê²€ìƒ‰ëœ í•™ìƒì •ë³´ë¥¼ ì €ì¥í•˜ì—¬ ì¶œë ¥ 
+		// => DefaultTableModel ì»´í¼ë„ŒíŠ¸ì— ê²€ìƒ‰ëœ í•™ìƒì •ë³´ë¥¼ ë°˜ë³µì ìœ¼ë¡œ í–‰ìœ¼ë¡œ ì¶”ê°€
 		for(StudentDTO student : studentList) {
 			Vector<Object> rowData = new Vector<Object>();
-			// --- Áß¿ä  ---
+			// --- ì¤‘ìš”  ---
 			rowData.add(student.getNo());
 			rowData.add(student.getName());
 			rowData.add(student.getPhone());
 			rowData.add(student.getAddress());
 			rowData.add(student.getBirthday());
-			// ¿­¿¡ µ¥ÀÌÅÍµéÀ» Ãß°¡ÇÔ 
+			// ì—´ì— ë°ì´í„°ë“¤ì„ ì¶”ê°€í•¨ 
 			model.addRow(rowData);
 		}
 	}
 	
-	// ------------¹öÆ° Å¬¸¯½Ã ¸Ş¼Òµå ½ÇÇà --------------
-	// -----------ÅØ½ºÆ® ¹öÆ°°ªÀ» ºÒ·¯¿Í¼­ À¯È¿¼º °Ë»ç¸¦ ÇÔ ---------
+	// ------------ë²„íŠ¼ í´ë¦­ì‹œ ë©”ì†Œë“œ ì‹¤í–‰ --------------
+	// -----------í…ìŠ¤íŠ¸ ë²„íŠ¼ê°’ì„ ë¶ˆëŸ¬ì™€ì„œ ìœ íš¨ì„± ê²€ì‚¬ë¥¼ í•¨ ---------
 	public void addStudent() {
-		String noTemp = noTF.getText(); // ÀÔ·ÂÇÑ °ª ºÒ·¯¿È 
-		
-		// StringÀ¸·Î ¹Ş¾Æ¾ßÁö equals() È£Ãâ °¡´É 
-		if(noTemp.equals("")) { // ¾Æ¹«°Íµµ ÀÔ·ÂÀ» ÇÏÁö ¾ÊÀ¸¸é 
-			JOptionPane.showMessageDialog(this, "ÇĞ¹øÀ» ¹İµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
-			noTF.requestFocus(); // ÀÔ·Â ÃĞÁ¡À¸·Î ÀÌµ¿ 
+		String noTemp = noTF.getText(); // ì…ë ¥í•œ ê°’ ë¶ˆëŸ¬ì˜´ 
+		// Stringìœ¼ë¡œ ë°›ì•„ì•¼ì§€ equals() í˜¸ì¶œ ê°€ëŠ¥ 
+		if(noTemp.equals("")) { // ì•„ë¬´ê²ƒë„ ì…ë ¥ì„ í•˜ì§€ ì•Šìœ¼ë©´ 
+			JOptionPane.showMessageDialog(this, "í•™ë²ˆì„ ë°˜ë“œì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”");
+			noTF.requestFocus(); // ì…ë ¥ ì´›ì ìœ¼ë¡œ ì´ë™ 
 			return;
 		}
-		
 		String noReg ="\\d{4}";
 		if(!Pattern.matches(noReg, noTemp)) {
-			JOptionPane.showMessageDialog(this, "ÇĞ¹øÀº 4ÀÚ¸®·Î ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(this, "í•™ë²ˆì€ 4ìë¦¬ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			noTF.requestFocus();
 			return;
 		}
 		
 		
-		// ÀÔ·Â¹ŞÀº ÇĞ¹ø°ªÀ» Á¤¼ö°ªÀ¸·Î º¯È¯ÇÏ¿© ÀúÀå
+		// ì…ë ¥ë°›ì€ í•™ë²ˆê°’ì„ ì •ìˆ˜ê°’ìœ¼ë¡œ ë³€í™˜í•˜ì—¬ ì €ì¥
 		int no = Integer.parseInt(noTemp);
 		
-		// ±×·±µ¥.. ÀÌ¹Ì »ç¿ëÁßÀÎ ÇĞ¹øÀÌ¸é 
+		// ê·¸ëŸ°ë°.. ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ í•™ë²ˆì´ë©´ 
 		if(StudentDAO.getDAO().selectNoStudent(no) != null) {
-			JOptionPane.showMessageDialog(this, "ÀÌ¹Ì »ç¿ëÁßÀÎ ÇĞ¹øÀÔ´Ï´Ù");
+			JOptionPane.showMessageDialog(this, "ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ í•™ë²ˆì…ë‹ˆë‹¤");
 			noTF.requestFocus();
 			return;
 		}
-		
 		String name = nameTF.getText();
 		
 		if(name.equals("")) {
-			JOptionPane.showMessageDialog(this, "ÀÌ¸§À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(this, "ì´ë¦„ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”");
 			nameTF.requestFocus();
 			return;
 		}
 		
-		// Á¤±Ô½Ä Ç¥Çö½Ä °Ë»ç
-		String nameReg = "^([°¡-ÆR]{2,7})$";
+		// ì •ê·œì‹ í‘œí˜„ì‹ ê²€ì‚¬
+		String nameReg = "^([ê°€-ï¿½R]{2,7})$";
 		if(!Pattern.matches(nameReg, name)) {
-			JOptionPane.showMessageDialog(this, "ÀÌ¸§Àº ÇÑ±Û 2~7ÀÚ·Î Àû¾îÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(this, "ì´ë¦„ì€ í•œê¸€ 2~7ìë¡œ ì ì–´ì£¼ì„¸ìš”");
 			nameTF.requestFocus();
 			return;		
 		}
-		
 		String phone = phoneTF.getText();
 		
 		if(phone.equals("")) {
-			JOptionPane.showMessageDialog(this, "¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(this, "ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			phoneTF.requestFocus();
 			return;
 		}
-		
 		String phoneReg = "(01[016789])-\\d{3,4}-\\d{4}";
 
 		if(!Pattern.matches(phoneReg, phone)) {
-			JOptionPane.showMessageDialog(this, "ÀüÈ­¹øÈ£¸¦ Çü½Ä¿¡ ¸Â°Ô ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ì „í™”ë²ˆí˜¸ë¥¼ í˜•ì‹ì— ë§ê²Œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			phoneTF.requestFocus();
 			return;
 		}
-		
 		String address = addressTF.getText();
 		
 		if(address.equals("")) {
-			JOptionPane.showMessageDialog(this, "ÁÖ¼Ò¸¦ ¹İµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ì£¼ì†Œë¥¼ ë°˜ë“œì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			addressTF.requestFocus();
 			return;
 		}
@@ -379,7 +368,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		String birthday = birthdayTF.getText();
 		
 		if(birthday.equals("")) {
-			JOptionPane.showMessageDialog(this, "»ı³â¿ùÀÏÀ» ¹İµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ìƒë…„ì›”ì¼ì„ ë°˜ë“œì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			birthdayTF.requestFocus();
 			return;
 		}
@@ -388,13 +377,13 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		String birthdayReg="(19|20)\\d{2}-(1-9|1[0-2])-(0[1-9]|[12][0-9]|3[0-1]";
 		
 		if(!Pattern.matches(birthdayReg, birthday)) {
-			JOptionPane.showMessageDialog(this, "»ıÀÏÀ» Çü½Ä¿¡ ¸Â°Ô ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ìƒì¼ì„ í˜•ì‹ì— ë§ê²Œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			birthdayTF.requestFocus();
 			return;
 		}
 		*/
 		
-		// ÀÔ·Â°ªÀ» ³ÖÀ½ 
+		// ì…ë ¥ê°’ì„ ë„£ìŒ 
 		StudentDTO student = new StudentDTO();
 		student.setNo(no);
 		student.setName(name);
@@ -402,51 +391,47 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		student.setAddress(address);
 		student.setBirthday(birthday);
 		
-		int rows = StudentDAO.getDAO().insertStudent(student); // dao.insertStudent(Ãß°¡);
-	
-		JOptionPane.showMessageDialog(this, rows+"¸íÀÇ ÇĞ»ıÁ¤º¸¸¦ ÀúÀå ÇÏ¿´½À´Ï´Ù.");
+		int rows = StudentDAO.getDAO().insertStudent(student); // dao.insertStudent(ì¶”ê°€);
+		JOptionPane.showMessageDialog(this, rows+"ëª…ì˜ í•™ìƒì •ë³´ë¥¼ ì €ì¥ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	
 		displayAllStudent();
 		
-		// ¸ğµç ÄÄÆ÷³ÍÆ® ÃÊ±âÈ­ Ã³¸® ¸Ş¼­µå È£Ãâ 
+		// ëª¨ë“  ì»´í¬ë„ŒíŠ¸ ì´ˆê¸°í™” ì²˜ë¦¬ ë©”ì„œë“œ í˜¸ì¶œ 
 		initDisplay();
 	}
 	
 	public void removeStudent() {
 		
 		String noTemp = noTF.getText(); 
-		
-		if(noTemp.equals("")) { // ¾Æ¹«°Íµµ ÀÔ·ÂÀ» ÇÏÁö ¾ÊÀ¸¸é 
-			JOptionPane.showMessageDialog(this, "ÇĞ¹øÀ» ¹İµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
-			noTF.requestFocus(); // ÀÔ·Â ÃĞÁ¡À¸·Î ÀÌµ¿ 
+		if(noTemp.equals("")) { // ì•„ë¬´ê²ƒë„ ì…ë ¥ì„ í•˜ì§€ ì•Šìœ¼ë©´ 
+			JOptionPane.showMessageDialog(this, "í•™ë²ˆì„ ë°˜ë“œì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”");
+			noTF.requestFocus(); // ì…ë ¥ ì´›ì ìœ¼ë¡œ ì´ë™ 
 			return;
 		}
 		
 		String noReg ="\\d{4}";
 		if(!Pattern.matches(noReg, noTemp)) {
-			JOptionPane.showMessageDialog(this, "ÇĞ¹øÀº 4ÀÚ¸®·Î ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(this, "í•™ë²ˆì€ 4ìë¦¬ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			noTF.requestFocus();
 			return;
 		}
-		
 		int no = Integer.parseInt(noTemp);
 		
 		int rows = StudentDAO.getDAO().deleteStudent(no);
 		
 		if(rows > 0) {
-			JOptionPane.showMessageDialog(this, rows+"¸íÀÇ ÇĞ»ı Á¤º¸¸¦ »èÁ¦ ÇÏ¿´½À´Ï´Ù. ");
+			JOptionPane.showMessageDialog(this, rows+"ëª…ì˜ í•™ìƒ ì •ë³´ë¥¼ ì‚­ì œ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 			displayAllStudent();
 		} else {
-			JOptionPane.showMessageDialog(this, "»èÁ¦ÇÏ°íÀÚ ÇÏ´Â ÇĞ»ı Á¤º¸°¡ ¾ø½À´Ï´Ù ");
+			JOptionPane.showMessageDialog(this, "ì‚­ì œí•˜ê³ ì í•˜ëŠ” í•™ìƒ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤ ");
 		}
-		initDisplay(); // ÃÊ±âÈ­ 
+		initDisplay(); // ì´ˆê¸°í™” 
 	}
-	
 	public void searchNoStudent() {
 		String noTemp = noTF.getText();
 		
 		if(noTemp.equals("")) {
-			JOptionPane.showMessageDialog(this, "ÇĞ¹øÀ» ¹İµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(this, "í•™ë²ˆì„ ë°˜ë“œì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”");
 			noTF.requestFocus();
 			return;
 		}
@@ -454,54 +439,48 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		String noReg = "\\d{4}"; 
 	
 		if(!Pattern.matches(noReg, noTemp)) {
-			JOptionPane.showMessageDialog(this, "ÇĞ¹øÀº 4ÀÚ¸®·Î ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "í•™ë²ˆì€ 4ìë¦¬ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			noTF.requestFocus();
 			return;
 		}
-		
 		int no = Integer.parseInt(noTemp);
 		
 		StudentDTO student = StudentDAO.getDAO().selectNoStudent(no);
 		if(student == null) {
-			JOptionPane.showMessageDialog(this, "º¯°æÇÏ°íÀÚ ÇÏ´Â °ªÀÌ ¾ø½À´Ï´Ù.");
+			JOptionPane.showMessageDialog(this, "ë³€ê²½í•˜ê³ ì í•˜ëŠ” ê°’ì´ ì—†ìŠµë‹ˆë‹¤.");
 			noTF.requestFocus();
 			noTF.setText("");
 			return;
 		}
-		
-		// °Ë»öµÇ¾î ºÒ·¯¿Â Á¤º¸¸¦ ÅØ½ºÆ®ÇÊµå¿¡ ÀÔ·Â ÇÑ´Ù. 
+		// ê²€ìƒ‰ë˜ì–´ ë¶ˆëŸ¬ì˜¨ ì •ë³´ë¥¼ í…ìŠ¤íŠ¸í•„ë“œì— ì…ë ¥ í•œë‹¤. 
 		noTF.setText(student.getNo()+"");
 		nameTF.setText(student.getName());
 		phoneTF.setText(student.getPhone());
 		addressTF.setText(student.getAddress());
 		birthdayTF.setText(student.getBirthday());
 
-		// ÇöÀç ÀÛ¼º »óÅÂ¸¦ UPDATE_CHANGE »óÅÂ·Î º¯°æ ÇÑ´Ù.
+		// í˜„ì¬ ì‘ì„± ìƒíƒœë¥¼ UPDATE_CHANGE ìƒíƒœë¡œ ë³€ê²½ í•œë‹¤.
 		setEnable(UPDATE_CHANGE);
 	}
-	
 	public void modifyStudent() {
 		
 		int no=Integer.parseInt(noTF.getText());
 		String name=nameTF.getText();
-		
 		if(name.equals("")) {
-			JOptionPane.showMessageDialog(this, "ÀÌ¸§À» ¹İµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ì´ë¦„ì„ ë°˜ë“œì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			nameTF.requestFocus();
 			return;
 		}
-		
-		String nameReg = "^([°¡-ÆR]{2,7})$";
+		String nameReg = "^([ê°€-ï¿½R]{2,7})$";
 		if(!Pattern.matches(nameReg, name)) {
-			JOptionPane.showMessageDialog(this, "ÀÌ¸§Àº ¹İµå½Ã 2~7ÀÚ·Î Àû¾îÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(this, "ì´ë¦„ì€ ë°˜ë“œì‹œ 2~7ìë¡œ ì ì–´ì£¼ì„¸ìš”");
 			nameTF.requestFocus();
 			return;
 		}
-		
 		String phone = phoneTF.getText();
 		
 		if(phone.equals("")) {
-			JOptionPane.showMessageDialog(this, "ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(this, "ì „í™”ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”");
 			phoneTF.requestFocus();
 			return;
 		}
@@ -509,7 +488,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		String phoneReg="(01[016789])-\\d{3,4}-\\d{4}";
 		
 		if(!Pattern.matches(phoneReg, phone)) {
-			JOptionPane.showMessageDialog(this, "ÀüÈ­¹øÈ£¸¦ Çü½Ä¿¡ ¸Â°Ô ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ì „í™”ë²ˆí˜¸ë¥¼ í˜•ì‹ì— ë§ê²Œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			phoneTF.requestFocus();
 			return;
 		}
@@ -517,15 +496,15 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		String address=addressTF.getText();
 		
 		if(address.equals("")) {
-			JOptionPane.showMessageDialog(this, "ÁÖ¼Ò¸¦ ¹İµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ì£¼ì†Œë¥¼ ë°˜ë“œì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			addressTF.requestFocus();
 			return;
 		}
 		
-		String birthday=birthdayTF.getText();//»ı³â¿ùÀÏÀÌ ÀÔ·ÂµÈ JTextField ÄÄÆÛ³ÍÆ®ÀÇ ÀÔ·Â°ªÀ» ¹İÈ¯¹Ş¾Æ ÀúÀå
+		String birthday=birthdayTF.getText();//ìƒë…„ì›”ì¼ì´ ì…ë ¥ëœ JTextField ì»´í¼ë„ŒíŠ¸ì˜ ì…ë ¥ê°’ì„ ë°˜í™˜ë°›ì•„ ì €ì¥
 		
 		if(birthday.equals("")) {
-			JOptionPane.showMessageDialog(this, "»ı³â¿ùÀÏÀ» ¹İµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ìƒë…„ì›”ì¼ì„ ë°˜ë“œì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			birthdayTF.requestFocus();
 			return;
 		}
@@ -533,13 +512,12 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		/*
 		String birthdayReg="(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 		if(!Pattern.matches(birthdayReg, birthday)) {
-			JOptionPane.showMessageDialog(this, "»ı³â¿ùÀÏÀ» Çü½Ä¿¡ ¸Â°Ô ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ìƒë…„ì›”ì¼ì„ í˜•ì‹ì— ë§ê²Œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			birthdayTF.requestFocus();
 			return;
 		}
 		*/
-		
-		// UPDATE_CHANGE ¿¡¼­ ÀÔ·ÂÇÑ º¯°æÇÑ °ªµéÀ» Ãß°¡ÇÑ´Ù.
+		// UPDATE_CHANGE ì—ì„œ ì…ë ¥í•œ ë³€ê²½í•œ ê°’ë“¤ì„ ì¶”ê°€í•œë‹¤.
 		StudentDTO student = new StudentDTO();
 		student.setNo(no);
 		student.setName(name);
@@ -549,7 +527,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		
 		int rows = StudentDAO.getDAO().updateStudent(student);
 	
-		JOptionPane.showMessageDialog(this, rows+"¸íÀÇ ÇĞ»ıÁ¤º¸°¡ º¯°æ ÇÏ¿´½À´Ï´Ù.");
+		JOptionPane.showMessageDialog(this, rows+"ëª…ì˜ í•™ìƒì •ë³´ê°€ ë³€ê²½ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	}
 	
 	public void searchNameStudent() {
@@ -557,30 +535,28 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		String name = nameTF.getText();
 		
 		if(name.equals("")) {
-			JOptionPane.showMessageDialog(this, "ÀÌ¸§À» ¹İµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ì´ë¦„ì„ ë°˜ë“œì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			nameTF.requestFocus();
 			return;
 		}
 		
-		String nameReg = "^[°¡-ÆR]{2,7}$";//2~7 ¹üÀ§ÀÇ ÇÑ±ÛÀ» Ç¥ÇöÇÑ Á¤±Ô Ç¥Çö½Ä
+		String nameReg = "^[ê°€-ï¿½R]{2,7}$";//2~7 ë²”ìœ„ì˜ í•œê¸€ì„ í‘œí˜„í•œ ì •ê·œ í‘œí˜„ì‹
 		if(!Pattern.matches(nameReg, name)) {
-			JOptionPane.showMessageDialog(this, "ÀÌ¸§Àº 2~7 ¹üÀ§ÀÇ ÇÑ±Û¸¸ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			JOptionPane.showMessageDialog(this, "ì´ë¦„ì€ 2~7 ë²”ìœ„ì˜ í•œê¸€ë§Œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			nameTF.requestFocus();
 			return;
 		}
 		
-		// ÀÌ¸§À¸·Î °Ë»ö 
+		// ì´ë¦„ìœ¼ë¡œ ê²€ìƒ‰ 
 		List<StudentDTO> studentList = StudentDAO.getDAO().selectNameStudent(name);
 		
-		// getModel() :  JTableÀÌ °®°í ÀÖ´Â µ¥ÀÌÅÍ¸¦ ´ã°í ÀÖ´Â °´Ã¼ÀÎ TableModel°´Ã¼°¡ ¸®ÅÏµË´Ï´Ù.
+		// getModel() :  JTableì´ ê°–ê³  ìˆëŠ” ë°ì´í„°ë¥¼ ë‹´ê³  ìˆëŠ” ê°ì²´ì¸ TableModelê°ì²´ê°€ ë¦¬í„´ë©ë‹ˆë‹¤.
 		DefaultTableModel model = (DefaultTableModel)table.getModel();
-		
-		// ±âÁ¸ Å×ÀÌºí °ªµéÀ» »èÁ¦ÇÔ 
+		// ê¸°ì¡´ í…Œì´ë¸” ê°’ë“¤ì„ ì‚­ì œí•¨ 
 		for(int i = model.getRowCount(); i > 0; i--) {
 			model.removeRow(0);
 		}
-		
-		// °Ë»öµÇ¾îÁø Å×ÀÌºí 
+		// ê²€ìƒ‰ë˜ì–´ì§„ í…Œì´ë¸” 
 		for(StudentDTO student : studentList) {
 			Vector<Object> rowData = new Vector<Object>();
 			rowData.add(student.getNo());
@@ -588,8 +564,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			rowData.add(student.getPhone());
 			rowData.add(student.getAddress());
 			rowData.add(student.getBirthday());
-			
-			// Å×ÀÌºí¿¡ Ãß°¡ÇÔ 
+			// í…Œì´ë¸”ì— ì¶”ê°€í•¨ 
 			model.addRow(rowData);
 		}
 		initDisplay();

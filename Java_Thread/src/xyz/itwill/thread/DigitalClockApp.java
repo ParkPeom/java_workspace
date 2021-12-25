@@ -36,10 +36,8 @@ public class DigitalClockApp extends JFrame {
 		clockLabel=new JLabel("", JLabel.CENTER);
 		clockLabel.setFont(new Font("굴림",Font.BOLD,30));
 		clockLabel.setForeground(Color.DARK_GRAY);
-		
 		startBtn=new JButton("다시 실행");
 		stopBtn=new JButton("일시 중지");
-		
 		JPanel panel=new JPanel();
 		panel.add(startBtn);
 		panel.add(stopBtn);
@@ -100,8 +98,7 @@ public class DigitalClockApp extends JFrame {
 				}
 			}
 		}
-	}
-	
+	}	
 	//JButton 컴퍼넌트를 누른 경우 동작될 이벤트 핸들러 클래스
 	public class JButtonEventHandler implements ActionListener {
 		@Override

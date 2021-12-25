@@ -19,37 +19,33 @@ public class JoinDAO extends JdbcDAO {
 	int rows = 0;
 	
 	private static JoinDAO dao;
-	
 	private JoinDAO() {}
-	
 	static {
 		dao = new JoinDAO();
 	}
-	
 	public static JoinDAO getDAO() {
 		return dao;
 	}
-	
 	public int insertJoin(JoinDTO join) {
-		
 		int rows = 0;
 		try {
 			con = getConnection();
-			String sql = "insert into join values (?,?,?,?,?,?,?,?)";
+			String sql = "insert into join values(?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setString(1, join.getJumin());
-			pstmt.setString(2, join.getName());
-			pstmt.setInt(3, join.getAge());
-			pstmt.setString(4, join.getGender());
-			pstmt.setString(5, join.getPhone());
-			pstmt.setString(6, join.getEmail());
-			pstmt.setString(7, join.getId());
-			pstmt.setString(8, join.getPassword());
-		
+			pstmt.setString(1, join.getId());
+			pstmt.setString(2, join.getPassword());
+			pstmt.setString(3, join.getJumin());
+			pstmt.setString(4, join.getName());
+			pstmt.setInt(5, join.getAge());
+			pstmt.setString(6, join.getGender());
+			pstmt.setString(7, join.getPhone());
+			pstmt.setString(8, join.getEmail());
 			rows = pstmt.executeUpdate();
 		if(rows > 0) {
+			// 추가되면 사용자테이블도 추가됨 
 			System.out.println("추가 되었습니다.");
+			CustomerDAO dao = CustomerDAO.getDAO();
+			dao.insertCustomer(join);		
 		} else {
 			System.out.println("변경되지 않음");
 		}
@@ -61,28 +57,24 @@ public class JoinDAO extends JdbcDAO {
 		}
 		return rows;	
 	}
-	
 	// 가입정보를 검색
 	public List<JoinDTO> selectAllJoin() {
 		List<JoinDTO> joinList = new ArrayList<JoinDTO>();
-		
 		try {	
 			con = getConnection();
 			String sql = "select * from join";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-		
 			while(rs.next()) {
 				JoinDTO join = new JoinDTO();
+					join.setId(rs.getString("id"));
+					join.setPassword(rs.getString("password"));
 					join.setJumin(rs.getString("jumin"));
 					join.setName(rs.getString("name"));
 					join.setAge(rs.getInt("age"));
 					join.setGender(rs.getString("gender"));
 					join.setPhone(rs.getString("phone"));
 					join.setEmail(rs.getString("email"));
-					join.setId(rs.getString("id"));
-					join.setPassword(rs.getString("password"));
-				
 				joinList.add(join);
 				}
 			}catch(SQLException e) {

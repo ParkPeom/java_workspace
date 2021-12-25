@@ -22,7 +22,6 @@ public class StudentDAO extends JdbcDAO implements StudentDAOAble{
 	int rows = 0;
 	
 	private static StudentDAO dao;
-	
 	// 积己磊 积己 阂啊 
 	private StudentDAO() {
 		
@@ -35,19 +34,16 @@ public class StudentDAO extends JdbcDAO implements StudentDAOAble{
 	}
 	@Override
 	public int insertStudent(StudentDTO student) {
-		
 		int rows = 0;
 		try {
 			con = getConnection();
 			String sql = "insert into student values(?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
-			
 			pstmt.setInt(1, student.getNo());
 			pstmt.setString(2, student.getName());
 			pstmt.setString(3, student.getPhone());
 			pstmt.setString(4, student.getAddress());
 			pstmt.setString(5, student.getBirthday());
-			
 			rows = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,7 +55,6 @@ public class StudentDAO extends JdbcDAO implements StudentDAOAble{
 
 	@Override
 	public int updateStudent(StudentDTO student) {
-		
 		int rows = 0;
 		try {
 			con = getConnection();
@@ -122,7 +117,6 @@ public class StudentDAO extends JdbcDAO implements StudentDAOAble{
 		}
 		return student;
 	}
-
 	@Override
 	public List<StudentDTO> selectNameStudent(String name) {
 		

@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -42,8 +43,6 @@ public class Frame {
 				System.exit(0);
 			}
 		});
-		
-		
 		
 		panel.add(label, BorderLayout.NORTH); // 라벨을 북쪽에 위치 시킨다. 
 		panel.add(btnPanel,BorderLayout.WEST); // 버튼 패널을 서쪽에 추가 

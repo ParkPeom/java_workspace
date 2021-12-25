@@ -20,9 +20,12 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class StudentGUIApp extends JFrame implements ActionListener {
-	private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = 1L; // 부모 JFrame serializable 의 고유값 객체 직렬화 (좀더 빠르게 객체 단위로 입출력 가능 ) 
+													 // long 타입으로 1L 기본 
 
-	public static final int NONE = 0;
+	// 상수 : 값을 대표해서 쓰는 이름  정수값을 명확하게 이름으로 구분할수있다. 
+	public static final int NONE = 0; // 최초 상태로 초기화
 	public static final int ADD = 1;
 	public static final int DELETE = 2;
 	public static final int UPDATE = 3;
@@ -89,7 +92,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		
 		// 버튼들을 누를떄마다 액션 이벤트가 발생 
 		bottom.add(addB = new JButton("추  가"));
-		addB.addActionListener(this); // 액션 이벤트를 호출하는데 나 자신을 호출 
+		addB.addActionListener(this); // 액션 이벤트를 호출하는데 나 자신을 호출(actionperformed) 
 
 		bottom.add(deleteB = new JButton("삭  제"));
 		deleteB.addActionListener(this);
@@ -135,6 +138,8 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	}
 	
 	//매개변수에 전달되는 정수값에 따른 JTextField 컴퍼넌트의 활성화 또는 비활성 처리
+	
+	// 상태에 따라서 컴퍼넌트 
 	public void setEditable(int n) {
 		switch (n) {
 		case ADD:
@@ -171,6 +176,8 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	
 	
 	//매개변수에 전달되는 정수값에 따른 JButton 컴퍼넌트의 활성화 또는 비활성 처리하는 메소드
+	
+	// 현재 저장된 cmd 값에 따라서 어떤 컴퍼넌트는 활성화 처리 비활성화 처리 시킴 
 	public void setEnable(int n) {
 		addB.setEnabled(false);
 		deleteB.setEnabled(false);
@@ -210,7 +217,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			searchB.setEnabled(true);
 		}
 	}
-	// 모든 JTextFied 컴퍼넌트의 입력값 초기화 처리하는 메소드
+	// 모든 JTextFied 컴퍼넌트의 입력값 최초 상태로  초기화 처리하는 메소드
 	public void clear() {
 		noTF.setText("");
 		nameTF.setText("");
@@ -219,7 +226,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		birthdayTF.setText("");
 	}
 	
-	//모든 컴퍼넌트를 초기화 처리하는 메소드
+	//모든 컴퍼넌트 JText 를 초기화 처리하는 메소드
 	public void initDisplay() {
 		setEnable(NONE); // 모든 버튼이 활성화 처리 
 		clear();
@@ -231,20 +238,28 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		new StudentGUIApp();
 	}
 	
-	//이벤트 처리 메소드 - JButton 컴퍼넌트를 누른 경우 자동 호출되는 메소드
+	
+	
+	//----------------------- 이벤트 처리 메소드 - JButton 컴퍼넌트를 누른 경우 자동 호출되는 메소드-----------------------
+	
+	
 	public void actionPerformed(ActionEvent ev) { // 버튼에서 이벤트 처리 메서드 
 		Component c = (Component) ev.getSource(); // 컴퍼넌트를 반환받음
 		try {
+			
+			// 상태에 따라 활성화 비활성화 처리 
+			
+			
 			if (c == addB) {//추가 버튼을 누른 경우
 				if (cmd != ADD) { //ADD 상태가 아닌 경우 - 컴퍼넌트의 활성 또는 비활성 처리
-					setEnable(ADD);//ADD 상태로 활성화	- 컴퍼넌트의 활성 또는 비활성화 처리 , JText 다 활성화			
+					setEnable(ADD); // ADD 상태로 활성화	- 컴퍼넌트의 활성 또는 비활성화 처리 , JText 다 활성화			
 				} else {//ADD 상태인 경우
 					//JTextField 컴퍼넌트의 입력값을 이용하여 처리 >> 초기화 처리 
 					addStudent(); // 추가 
 				}
 			} else if (c == deleteB) {
-				if (cmd != DELETE) {
-					setEnable(DELETE);
+				if (cmd != DELETE) { // DELETE 상태가 아닌 경우
+					setEnable(DELETE); // DELETE 상태로 활성화 한다. 
 				} else {
 					removeStudent(); // 삭제 				
 				}
@@ -263,6 +278,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 					searchNameStudent();	
 				}
 			} else if (c == cancelB) {
+			    displayAllStudent();
 				initDisplay();
 			}
 		} catch (Exception e) {
@@ -286,7 +302,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			// 부모는 this 
 			// => 메세지를 출려가는 다이얼로그를 제공하는 메서드 
 			JOptionPane.showMessageDialog(this, "저장된 학생정보가 없습니다.");
-			return; // 메서드 종료 
+			return; // 출력할게 없으니 메서드 종료 
 		}
 		
 		// JTable.getModel() : JTable 컴퍼넌트에 종속된 TableModel 인스턴스를 반환하는 메서드 
@@ -296,13 +312,16 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		// => - JTable 컴퍼너는트의 행정보를 제어하는 인스턴스 
 		// => Table Model 인스턴스를 DefaultTableModel 클래스로 객체 형변환 하여 저장 
 		
-		DefaultTableModel model = (DefaultTableModel)table.getModel();
+		DefaultTableModel model = (DefaultTableModel)table.getModel(); // 테이블에서 행을 삭제하거나 추가할떄 DefaultTableModel	
+				//  table.getModel() : TableModel부모 반환 자식 으로 형변환 
 		
 		
 		// 기존 학생을 제거하고 
 		// 기존 JTable 컴퍼넌트에 존재하는 모든 행을 하나씩 반복적으로 제거한다 - JTable 컴퍼넌트 초기화 
 		// model.getRowCount() : 저장된 행의 갯수를 반환하는 메서드 
 		
+		
+		// 행의 갯수까지 반복 
 		for(int i = model.getRowCount(); i > 0 ; i--) {
 			// DefaultTableModel.removeRow(int row ) :DefaultTableModel 인스턴스에 저장된
 			// 행을 첨자(RowIndex)를 전달받아첨자 위치의 행을 제거하는 메서드
@@ -337,7 +356,6 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			noTF.requestFocus();//컴퍼넌트로 입력촛점(Focus)을 이동하는 메소드
 			return; // 종료 
 		}
-		
 		String noReg = "\\d{4}"; // 숫자 4번 반복 하는 규칙 
 		if(!Pattern.matches(noReg, noTemp)) { // 입력값이 4자리를 
 			JOptionPane.showMessageDialog(this, "학번을 4자리의 숫자로만 입력해주세요");
@@ -629,6 +647,47 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	
 	public void searchNameStudent() {
 		
+		String name=nameTF.getText();//이름이 입력된 JTextField 컴퍼넌트의 입력값을 반환받아 저장
+		
+		if(name.equals("")) {
+			JOptionPane.showMessageDialog(this, "이름을 반드시 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		String nameReg="^([가-?]{2,7})$";//2~7 범위의 한글을 표현한 정규 표현식
+		if(!Pattern.matches(nameReg, name)) {
+			JOptionPane.showMessageDialog(this, "이름은 2~7 범위의 한글만 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		//이름을 전달하여 STUDENT 테이블에 저장된 해당 이름의 모든 학생정보를 검색하여 반환
+		//하는 DAO 클래스의 메소드 호출
+		List<StudentDTO> studentList=StudentDAO.getDAO().selectNameStudent(name);
+		
+		if(studentList.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "검색된 학생정보가 없습니다.");
+			return;
+		}
+		
+		DefaultTableModel model=(DefaultTableModel)table.getModel();
+		
+		for(int i=model.getRowCount();i>0;i--) {
+			model.removeRow(0);
+		}
+		
+		for(StudentDTO student:studentList) {
+			Vector<Object> rowData=new Vector<Object>();
+			rowData.add(student.getNo());
+			rowData.add(student.getName());
+			rowData.add(student.getPhone());
+			rowData.add(student.getAddress());
+			rowData.add(student.getBirthday());
+			model.addRow(rowData);
+		}
+		
+		initDisplay();
 		
 	}
 }

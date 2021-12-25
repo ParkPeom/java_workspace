@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import choice.Choice;
+import dao.CustomerDAO;
 import dao.JoinDAO;
 import dto.CustomerDTO;
 import dto.JoinDTO;
@@ -13,7 +14,6 @@ import dto.JoinDTO;
 public class Print {
 	
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	
 	int number;
 	String answer;
 	public Print() {}
@@ -56,17 +56,18 @@ public class Print {
 	// 회원가입 페이지 
 	public static void join() {
 		JoinDTO joindto = new JoinDTO();	
-		JoinDAO joindao = JoinDAO.getDAO();
+		JoinDAO joindao = JoinDAO.getDAO();	
+		// 가입 테이블---------------------------------
+		joindto.setId(setStringMessage("아이디"));
+		joindto.setPassword(setStringMessage("패스워드"));
 		joindto.setJumin(setStringMessage("주민번호"));
-		joindto.setAge(setIntMessage("나이"));
 		joindto.setName(setStringMessage("이름"));
+		joindto.setAge(setIntMessage("나이"));
 		joindto.setGender(setStringMessage("성별"));
 		joindto.setPhone(setStringMessage("전화번호"));
 		joindto.setEmail(setStringMessage("이메일"));
-		joindto.setId(setStringMessage("아이디"));
-		joindto.setPassword(setStringMessage("패스워드"));
 		// DB에 값 넣음
-		joindao.insertJoin(joindto);	
+		joindao.insertJoin(joindto);			
 	}
 	// 로그인 
 	public static void login() {
@@ -75,21 +76,26 @@ public class Print {
 		String id = setStringMessage("아이디");
 		String password = setStringMessage("비밀번호");
 		List<JoinDTO> joinList = joindao.selectAllJoin();
+		
 		for(int i = 0; i < joinList.size(); i++) {
 			if(id.equals(joinList.get(i).getId())
 					&& password.equals(joinList.get(i).getPassword())) {
 				System.out.println("로그인이 되셨습니다.");
 				Print.showprintmenu(id);
 			} else {
-				System.out.println("로그인에 실패하였습니다.");
+				
 			}
 		}	
 	}
-	
 	// 마이페이지
-	public static void myPage(String id) {
-		CustomerDTO customer = new CustomerDTO();
-	
-		
+	public static void myPage(String id) { // 가입한 아이디 bum4856
+		CustomerDAO dao = CustomerDAO.getDAO();
+		CustomerDTO dto = new CustomerDTO();			
+		List<CustomerDTO> customer = dao.selectIDCustomer(id);
+		for(int i = 0; i < customer.size(); i++) {
+			System.out.println("아이디 : " + customer.get(i).getId()
+					+" 돈 : " + customer.get(i).getMoney()
+					+" 포인트 : " + customer.get(i).getBonuspoint());
+		}
 	}
 }
