@@ -13,7 +13,7 @@ public class Program5 {
 		NoticeConsole console = new NoticeConsole();
 		// int page; // page 상태변수
 		// NoticeConsole : 페이지에 대한 상태값을 가지고 있다.
-	EXIT : while(true) {
+	EXIT:while(true) {
 		console.printNoticeList();// 출력
 		int menu = console.inputNoticeMenu();// 입력
 		switch(menu) {
@@ -33,8 +33,8 @@ public class Program5 {
 			console.inputSearchWord();
 			break;
 		case 6: // 종료
-			System.out.println("Bye ~ ");
-			break EXIT; // 무한루프 로 벗어남 
+			System.out.println("Bye ~~ ");
+			break EXIT; // 라벨로 무한루프 로 벗어남 (자연스러운 종료)
 		default:
 			System.out.println("<<사용방법>> 메뉴는 1~4까지만 입력 할수 있습니다.");
 				break;

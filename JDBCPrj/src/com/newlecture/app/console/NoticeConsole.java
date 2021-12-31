@@ -45,7 +45,7 @@ public class NoticeConsole {
 	public int inputNoticeMenu() {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("1.상세조회 / 2. 이전 / 3. 다음 / 4. 글쓰기 5. 검색 6. 종료 > ");
-		String menu_ = scan.next(); // 임시변수에 담음
+		String menu_ = scan.nextLine(); // 임시변수에 담음
 		int menu = Integer.parseInt(menu_);
 		return menu;
 	}
